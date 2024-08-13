@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Coordinate Vector}{2}{section*.1}%
+\contentsline {section}{Matrix of a Linear transformation}{3}{section*.2}%
+\contentsline {subsection}{General Procedure}{7}{subsection*.3}%

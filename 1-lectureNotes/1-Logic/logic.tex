@@ -1,0 +1,204 @@
+\input{template.tex}
+
+%%%%
+\begin{document}
+\setcounter{chapter}{12}
+
+\begin{center}
+\underline{\LARGE \textsc{Appendix L: Mathematical Language}} 
+\end{center}
+
+
+
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\sectionformat}% code preceding the title body  (title body is taken as argument)
+    
+\vspace*{0.5cm}
+
+\section{Mathematical Statements}
+
+A \underline{statement} is a sentence (written in words, mathematical symbols, or a combination of the two) that is either true or false.\footnote{Most of the material presented here is from the really good notes retrieved online at \url{https://sites.math.washington.edu/~conroy/m300-general/ConroyTaggartIMR.pdf}. Some passages might entirely be copied or modified slightly from this resource.}
+
+\begin{example}
+\begin{enumerate}[label=\alph*)]
+\item $4 + 11 = 15$. \\This is a statement and it is true.
+\item $x > 5$.\\ This is not a statement. Grammatically, it is a complete sentence, written in mathematical symbols, with a subject ($x$) and a predicate (\textit{is greater than $10$}). The sentence, however, is neither true or false because the value of $x$ is not specified.
+\item If $x = 5$, then $x > 0$. \\This is a statement and it is true.
+\item There exists a positive integer $n$ such that $n > 2$.\\ This is a statement and it is false.
+\item Is the number $20$ an even number? \\This is not a statement. A question is neither true or false.
+\end{enumerate}
+\end{example}
+
+A \underline{proof} is a piece of writing that demonstrates that a particular statement is true. A statement that we prove to be true is often called a \underline{theorem}. A statement that we assume without proof is an \underline{axiom}. A \underline{definition} is an agreement between the writer (or professor) and the reader (or the student) as to the meaning of a word or phrase. A definition needs no proof.
+
+
+
+\section{Logic and Mathematical Language}
+You will find below useful definitions and techniques used to derive other mathematical statements from a given mathematical statement.
+
+\subsubsection*{Negation}
+If $P$ is a statement, then it has a \underline{truth value}: true or false. The \underline{negation} of a statement $P$ is defined as \textit{it is not the case that $P$}. The negation of a statement $P$ will be abbreviated by $not\, P$ or $\neg P$.
+
+\begin{example}
+Consider the statement $P$: ``$2$ is an even integer''. The negation of $P$ is ``It is not the case that $2$ is an even integer'' which we may rewrite as ``$2$ is not an even integer''. We may even go further and rewrite $\neg P$ as follows: ``$2$ is an odd integer''. Notice that $P$ is true and $\neg P$ is false.
+\end{example}
+
+\subsubsection*{Conjunction and Disjunction}
+Let's consider two statements $P$ and $Q$.
+
+	\begin{itemize}
+		\item The \underline{conjunction} of $P$ and $Q$ is the statement ``$P$ and $Q$''. It is denoted by $P \wedge Q$ and it is true only when $P$ and $Q$ are true; otherwise it is false.
+		\item The \underline{disjunction} of $P$ and $Q$ is the statement ``$P$ or $Q$''. It is denoted by $P \vee Q$ and it is true when one of the two statements is true.
+	\end{itemize}
+
+We can use a truth table to illustrate the conjunction and disjunction of two statements $P$ and $Q$ as shown below.
+
+\begin{center}
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{c|c|c}
+	$P$ & $Q$ & $P \wedge Q$ \\\hline 
+	$T$ & $T$ & $T$ \\\hline 
+	$T$ & $F$ & $F$ \\\hline 
+	$F$ & $T$ & $F$ \\\hline 
+	$F$ & $F$ & $F$ \\
+	\end{tabular}\vspace*{4pt}
+
+	(a) Truth table for $P \wedge Q$
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{c|c|c}
+	$P$ & $Q$ & $P \vee Q$ \\\hline 
+	$T$ & $T$ & $T$ \\\hline 
+	$T$ & $F$ & $T$ \\\hline 
+	$F$ & $T$ & $T$ \\\hline 
+	$F$ & $F$ & $F$ \\
+	\end{tabular}\vspace*{4pt}
+
+	(b) Truth table for $P \vee Q$
+	\end{minipage}
+\end{center}
+
+\vspace*{12pt}
+
+\begin{example}
+\begin{enumerate}[label=\alph*)]
+\item Consider the statement $P$: ``$2$ is a positive integer'' and the statement $Q$: ``$-4$ is a negative integer''. The statement $P \wedge Q$ is true because $P$ and $Q$ are true. But $P \wedge (\neg Q)$ is not true because $\neg Q$: ``$-4$ is not a negative integer'' is false.
+\item Consider the same statements from part a). The statement $P \vee Q$ is true because the integer $2$ is a positive integer and only one of the statements $P$, $Q$ needs to be true. The statement $(\neg P) \vee Q$ is also true because the statement $Q$ is true ($-4$ is a negative number). But the statement $(\neg P) \vee (\neg Q)$ is not true because $\neg P$ and $\neg Q$ are both false.
+\end{enumerate}
+\end{example}
+
+We can take the negation of a conjunction and of a disjunction.
+
+\begin{example}
+A friend tells you the conditions to come to his party. He tells you that you must wear green clothes only AND bring a one-page explanation of why you are at his party. A person that wants to go to your friend's party must satisfies \textit{both} conditions. Anyone who is wearing a non-green piece of clothe will not be allowed at the party. Also, anyone who did not write the one-page essay will not be allowed at the party. Therefore, anyone who does not wear a green outfit or anyone who did not write the one-page essay will not come to the party. 
+\end{example}
+
+\underline{Conclusion:} The negation of $P \wedge Q$ is $(\neg P) \vee (\neg Q)$.
+
+\begin{example}
+Your friend decides to be more welcoming. He tells you the conditions to come to his party remains the same, but only one of them must be meet. In other words, you may wear green clothes only OR bring a one-page explanation of why you are at his party. A person that wants to go to your friend's party must satisfy one of the two conditions. But if the person is not dressed in green clothes and does not bring the one-page essay, then unfortunately, that person will not be allowed to join the party. In other words, if both conditions are not respected by a person, then that person will not be allowed to join the party.
+\end{example}
+
+\underline{Conclusion:} The negation of $P \vee Q$ is $(\neg P) \wedge (\neg Q)$.
+
+\subsubsection*{Conditional}
+
+A lot of statements we will encounter are of the form ``If $P$, then $Q$''. These statements are called \underline{conditional statements}. We will use the following notation ``$P \Rightarrow Q$'' to denote a conditional statement.
+
+The truth value of the statement $P \Rightarrow Q$ depends on the truth values of $P$ and $Q$.
+
+\begin{example}
+We think of $P \Rightarrow Q$ as an agreement. Joe makes a deal with his parents. Let $P$: ``Joe did the dishes after dinner'' and $Q$: ``Joe got \$5''. The agreement is
+	\begin{align*}
+	P \Rightarrow Q : \, \text{If Joe did the dishes, then he got \$5.}
+	\end{align*}
+Doing the dishes is a compulsory act and Joe is not required to do the dishes. His parents will still love him if he doesn't do the dishes.
+	\begin{itemize}
+		\item In the case that Joe did the dishes ($P$ is true) and got paid ($Q$ is true), the agreement is met ($P \Rightarrow Q$ is true). 
+		\item In the case that Joe didn't do the dishes ($P$ is false) and didn't get paid ($Q$ is false), the agreement is met ($P \Rightarrow Q$ is true). 
+		\item Since Joe is not required to wash the dishes, his parents may choose to give him \$5 for some other reason. That is, in the case Joe did not do the dishes ($P$ is false) and got \$5 anyway ($Q$ is true), the agreement is still met ($P \Rightarrow Q$ is true). 
+		\item The only instance in which the agreement is not met ($P \Rightarrow Q$ is false) is in the case that Joe did wash the dishes ($P$ is true), but did not get the money from his parents ($Q$ is false).
+	\end{itemize}
+\end{example}
+
+In the parents' point of view, the best and more effective outcome is Joe did the dishes: So when $P$ is true and $Q$ is true. In mathematics also, most of the conditional statements $P \rightarrow Q$ will fall into the case $P$ is true, then $Q$ is true. This leads to the first method of proof presented in Appendix B of the textbook.
+
+%To summarize, the statement $P \Rightarrow Q$ is true unless $P$ is true and $Q$ is false, like it is shown in the table below.
+
+%	\begin{center}
+%		\begin{tabular}{c|c|c}
+%		$P$ & $Q$ & $P \Rightarrow Q$ \\\hline 
+%		$T$ & $T$ & $T$ \\\hline 
+%		$T$ & $F$ & $F$ \\\hline 
+%		$F$ & $T$ & $T$ \\\hline 
+%		$F$ & $F$ & $T$ \\
+%		\end{tabular}\vspace*{4pt}
+
+%		Truth table for the conditional
+%	\end{center}
+
+To explain the negation of the conditional, we use Joe's story from the previous example. Joe claims that his parents broke their verbal contract, while the parents deny Joe's claim. In other words, Joe's parents say that $P \Rightarrow Q$ is true, while Joe says that $\neg (P \Rightarrow Q)$ is true. If you were Joe's lawyer, what evidence would you have to provide to win the case? You would need to show that Joe washed the dishes and did not get paid. That is, you would need to show that $P \wedge (\neg Q)$ is true.
+
+	\underline{Conclusion:} The $ \neg (P \Rightarrow Q)$ is the statement $P \wedge (\neg Q)$.
+
+\subsubsection*{Converse and Contrapositive}
+
+\begin{definition}
+\begin{itemize}
+	\item The \underline{converse} of $P \Rightarrow Q$ is the statement $Q \Rightarrow P$. 
+	\item The \underline{contrapositive} of $P \Rightarrow Q$ is the statement $(\neg Q) \Rightarrow (\neg P)$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+Consider the statements $P$: ``Valérie's cat is hungry'' and $Q$: ``Valérie's cat meows''. 
+	\begin{itemize}
+	\item The implication $P \Rightarrow Q$ reads as ``If Valérie's cat is hungry, then the cat meows''. 
+	\item The converse $Q \Rightarrow P$ of $P \Rightarrow Q$ reads as ``If Valérie's cat meows, then the cat is hungry''. You can check that $P \Rightarrow Q$ has not necessarily the same truth value as its converse $Q \Rightarrow P$. 
+	\item The contrapositive of $P \Rightarrow Q$ reads as ``If Valérie's cat does not meow, then the cat is not hungry''. You can check that $P \Rightarrow Q$ has the same truth value of $(\neg Q) \Rightarrow (\neg P)$.
+	\end{itemize}
+\end{example}
+
+\subsubsection*{Equivalent statement}
+
+\begin{definition}
+The statement $P$ if and only if $Q$, written $P \iff Q$, is readily the statement
+	\begin{align*}
+	(P \Rightarrow Q) \wedge (Q \Rightarrow P) .
+	\end{align*}
+\end{definition}
+
+\subsubsection*{Quantifiers}
+
+Suppose $n$ is an integer and $P(n)$ is a statement about $n$. 
+	\begin{itemize}
+	\item If $P (n)$ is true for at least one integer $n$, then we say ``There exists $n$ such that $P (n)$''. This type of statement is called an \underline{existence statement} and the symbol $\exists$ is used as a shortcut for the ``there exists'' part.
+	\item If $P(n)$ is true no matter what value $n$ takes, then we say ``For all $n$, $P (n)$''. This type of statement is called a \underline{universal statement} and the symbol $\forall$ is used as a shortcut for the ``For all'' part.
+	\end{itemize}
+These statements are called \underline{quantified statements}.
+
+\begin{example} Assume throughout this example that $n$ is an integer.
+	\begin{enumerate}[label=\alph*)]
+		\item ``There exists $n$ such that $n > 0$''. In this statement, $P (n)$ is ``$n > 0$. The statement $P (10)$ is true because $10 > 0$, therefore the statement ``$\exists n$ such that $n > 0$'' is true because $P (n)$ is true for at least one integer $n$.
+		\item ``For all $n$, $n > 0$''. The statement $P (-1)$ is false since $-1$ is not greater than $0$. Therefore, the statement ``$\forall n$, $P (n)$'' is false because $P(n)$ is \textit{not} true for every integer $n$.
+		\item ``$\exists n$ such that $|n| < 0$''. This statement is false because there is no integer $n$ with $|n| < 0$; the absolute value turns every integer into a positive or zero integer.
+	\end{enumerate}
+\end{example}
+
+Here are the ways to negate a quantified statement:
+\begin{itemize}
+	\item The negation of ``$\exists n$ such that $P (n)$'' is ``$\forall n$, $\neg (P (n))$''.
+	\item The negation of ``$\forall n$, $P(n)$'' is ``$\exists n$ such that $\neg (P (n))$``.
+\end{itemize}
+
+
+
+
+
+\end{document}

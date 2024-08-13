@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Matrix and Augmented Matrix}{2}{section*.1}%
+\contentsline {section}{Row-Echelon Form of a matrix}{3}{section*.2}%
+\contentsline {section}{Rank}{8}{section*.3}%

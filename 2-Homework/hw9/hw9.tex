@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 9}}
+\rhead{Spring 2024}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 9 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+
+	\exo{5.1}{1}{10} 
+	\begin{enumerate}
+		\item[a.] This is not a subspace because the vector $\mathbf{0} = (0 , 0, 0)$ is not in $U$.
+		\item[b.] This is a subspace because it satisfies S1-S3.
+			\begin{enumerate}[label=S\arabic*.]
+				\item Set $s = t = 0$, then $(0, 0, 0) \in U$.
+				\item Let $\mathbf{u_1} = (0, s_1, t_1)$ and $\mathbf{u_2} = (0, s_2, t_2)$. Then, we get
+					\[
+						\mathbf{u_1} + \mathbf{u_2} = (0 + 0, s_1 + s_2 , t_1 + t_2) = (0, s , t)
+					\]
+				where $s := s_1 + s_2$ and $t := t_1 + t_2$. Hence, $\mathbf{u_1} + \mathbf{u_2} \in U$.
+				\item Let $\mathbf{u_1} = (0, s_1, t_1)$ and let $a \in \mathbb{R}$. Then
+					\[
+						a \mathbf{u_1} = (a (0) , a s_1 , a t_1 ) = (0, s, t) ,
+					\]
+				where $s = a s_1$ and $t = at_1$. Hence $a\mathbf{u_1} \in U$. 
+			\end{enumerate}
+	\end{enumerate}
+
+	\spc 
+
+	\exo{5.1}{17a}{10}
+	\\ 
+	Notice that
+		\[
+			A \mathbf{x} = B \mathbf{x} \iff A \mathbf{x} - B \mathbf{x} = \mathbf{0} \iff (A - B) \mathbf{x} = \mathbf{0} .
+		\]
+	Hence,
+		\[
+			U = \{ \mathbf{x} \in \mathbb{R}^n \, : \, A\mathbf{x} = B \mathbf{x} \} = \{ \mathbf{x} \in \mathbb{R}^n \, : \, (A - B) \mathbf{x} = \mathbf{0} \} = \mathrm{null}\, (A - B) .
+		\]
+	Since $C = A - B$ is a $m \times n$ matrix, from the lecture notes, we know that $\mathrm{null} (A - B)$ is a subspace of $\mathbb{R}^n$. 
+
+	\spc 
+
+	\exo{6.2}{1}{15}
+	\begin{enumerate}
+		\item[b.] This is a subset of $\mathbf{P_3}$ because $x$ times a polynomial of degree at most 2 results in a polynomial of degree at most 3.
+			\begin{enumerate}
+				\item[S1.] Set $g (x) = 0$ for any $x$, then $x g (x) = 0$. Therefore, the zero polynomial is in $U$.
+				\item[S2.] Let $p_1 (x) = x g_1 (x)$ and $p_2 (x) = x g_2 (x)$, where $g_1$ and $g_2$ are in $\mathbf{P_2}$. Then
+					\[
+						p_1 (x) + p_2 (x) = x g_1 (x) + x g_2 (x) = x (g_1 (x) + g_2 (x)) = x g (x)
+					\]
+				where $g(x) = g_1 (x) + g_2 (x) \in \mathbf{P_2}$. Hence, $p_1 + p_2 \in U$.
+				\item[S3.] Let $p (x) = x g_1 (x)$, where $g_1 \in \mathbf{P_2}$. Then
+					\[
+						a p(x) = a x g_1 (x) = x (a g_1 (x)) = x g (x) 
+					\]
+				with $g (x) = a g_1 (x) \in \mathbf{P_2}$. Hence, $ap \in U$.
+			\end{enumerate}
+		Since S1, S2, S3 are satisfied, we conclude that $U$ is a subspace of $\mathbf{P_3}$.
+		\item[f.] Since the zero polynomial is of degree $0$, it is not in $U$. Therefore, $U$ is not a subspace.
+	\end{enumerate}
+
+	\spc 
+
+	\exo{6.2}{2}{15}
+	\begin{enumerate}
+		\item[d.] Since the product of $2 \times 2$ matrices stay a $2 \times 2$ matrix, the set $U$ is a subset of $\mathbf{M_{22}}$.
+			\begin{enumerate}
+				\item[S1.] If $A = \mathbf{0}$, then $\mathbf{0} B = \mathbf{0}$. Hence, $\mathbf{0} \in U$.
+				\item[S2.] Assume that $A$ and $C$ are in $U$. Then $AB = \mathbf{0}$ and $CB = \mathbf{0}$. Therefore
+					\[
+						(A + C) B = AB + CB = \mathbf{0} + \mathbf{0} = \mathbf{0} .
+					\]
+				Hence, $A + C \in U$.
+				\item[S3.] Assume that $A \in U$ and $a \in \mathbb{R}$. Therefore, $AB = 0$ and
+					\[
+						(aA) B = a (AB) = a \mathbf{0} = \mathbf{0} .
+					\]
+				Hence, $aA \in U$.
+			\end{enumerate}
+		Since S1, S2, and S3 are satisfied, we get that $U$ is a subspace.
+		\item[e.] $U$ is a subset of $\mathbf{M_{22}}$.
+			\begin{enumerate}
+				\item[S1.] Notice that $\mathbf{0}^2 = \mathbf{0}$ and therefore $\mathbf{0} \in U$.
+				\item[S2.] Let $A, B \in U$, so that $A^2 = A$ and $B^2 = B$. Now, we have
+					\[
+						(A + B)^2 = A^2 + AB + BA + B^2 = A + AB + BA + B .
+					\]
+				Let $A = \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix}$ and $B = \begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix}$. We get check that $A^2 = A$ and $B^2 = B$. However,
+					\[
+						A + B = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} \quad \Rightarrow \quad (A + B)^2 = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix} \neq A + B .
+					\]
+				Hence, $A + B \not\in U$.
+			\end{enumerate}
+		Since S2 is not satisfied, $U$ is not a subspace.
+	\end{enumerate}
+
+
+
+\end{document}
+
+
+%\item[a.] The zero polynomial is not in $U$ because $0(2) = 0 \neq 1$. So, $U$ is not a subspace of $\mathbf{P}_3$.
+%\item[d.] $U$ is a subset of $\mathbf{P_3}$ because every element of the form $x g(x) + (1 - x) h (x)$ is a polynomial of degree at most 3 when $g$ and $h$ are polynomials of degree at most 2.
+			\begin{enumerate}
+				\item[S1.] Set $g (x) = h (x) = 0$ for any $x$. Then $x g (x) + (1 - x) h (x) = 0$ for any $x$ and therefore the zero polynomial is in $U$.
+				\item[S2.] Let $p_1 (x) = x g_1 (x) + (1 - x) h_1 (x)$ and $p_2 (x) = x g_2 (x) + (1 - x) h_2 (x)$. Then,
+					\begin{align*}
+						p_1 (x) + p_2 (x) &= x g_1 (x) + (1 - x) h_1 (x) + x g_2 (x) + (1 - x) h_2 (x) \\ 
+						&= x (g_1 (x) + g_2 (x)) + (1 - x) (h_1 (x) + h_2 (x)) \\ 
+						&= x g (x) + (1 - x) h (x) 
+					\end{align*}
+				where $g (x) = g_1 (x) + g_2 (x) \in \mathbf{P_2}$ and $h (x) = h_1 (x) + h_2 (x) \in \mathbf{P_2}$. Therefore $p_1 (x) + p_2 (x) \in U$.
+				\item[S3.] Let $p (x) = x g_1 (x) + (1 - x) h_1 (x)$. Then
+					\[
+						a p (x) = a(xg_1 (x) + (1 - x) h_1 (x)) = ax g_1 (x) + a (1 - x) h_1 (x) = x g(x) + (1 - x) h (x) 
+					\]
+				where $g (x) = a g_1 (x) \in \mathbf{P_2}$ and $h (x) = a h_1 (x) \in \mathbf{P_2}$. Therefore $a p (x) \in U$.
+			\end{enumerate}
+			Since S1, S2, and S3 are satisfied, $U$ is a subspace of $\mathbf{P_3}$.

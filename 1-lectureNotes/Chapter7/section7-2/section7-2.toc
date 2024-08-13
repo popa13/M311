@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Definitions}{2}{section*.1}%
+\contentsline {section}{One-to-One and Onto Transformations}{5}{section*.2}%
+\contentsline {section}{Dimension Theorem}{7}{section*.3}%

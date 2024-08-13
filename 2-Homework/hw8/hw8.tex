@@ -1,0 +1,343 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 8}}
+\rhead{Spring 2024}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 8 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+
+	\exo{3.3}{1b}{15}
+	\\
+		\underline{Characteristic polynomial:} We have
+				\[
+					c_A (x) = \det (x I - A) = \begin{vmatrix} x - 2 & 4 \\ 1 & x + 1 \end{vmatrix} = (x-2)(x+1) - 4 = x^2 - x - 6 .
+				\]
+		\underline{Eigenvalues:} We have
+			\[
+				c_A (x) = 0 \iff x^2 - x - 6 = 0 \iff (x + 2) (x - 3) = 0 .
+			\]
+		Hence $\lambda_1 = -2$ and $\lambda_2 = 3$. 
+
+		\underline{Eigenvectors:} We have two eigenvalues.
+			\begin{itemize}
+				\item $\lambda = -2$. We have to solve the system
+					\[
+						\left( -2 \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} 2 & -4 \\ -1 & -1 \end{bmatrix} \right) \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} \iff \begin{bmatrix} -4 & 4 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} .
+					\]
+				The system is $-4x + 4y = 0$ and $x - y = 0$. This reduces to the single equation
+					\[
+						x - y = 0 \iff x = y .
+					\]
+				Hence, we have
+					\[
+						\mathbf{x_1} = \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} x \\ x \end{bmatrix} = x \begin{bmatrix} 1 \\ 1 \end{bmatrix} .
+					\]
+				\item $\lambda = 3$. We have to solve the system
+					\[
+						\begin{bmatrix} 1 & 4 \\ 1 & 4 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} .
+					\]
+				The system of equations is $x + 4y = 0$ and $x + 4y =0$. This can be rewritten as the single equation
+					\[
+						x + 4y = 0 \iff x = -4y .
+					\]
+				Hence
+					\[
+						\mathbf{x_2} = \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} -4y \\ y \end{bmatrix} = y \begin{bmatrix} -4 \\ 1 \end{bmatrix} .
+					\]
+			\end{itemize}
+
+		\underline{Diagonalization:} Since the eigenvalues are all different, the matrix $P$ exists. In the expression of $\mathbf{x_1}$, we let $x = 1$, so that
+			\[
+				\mathbf{x_1} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} .
+			\]
+		In the expression of $\mathbf{x_2}$, we let $y = 1$, so that
+			\[
+				\mathbf{x_2} = \begin{bmatrix} -4 \\ 1 \end{bmatrix} .
+			\]
+		Hence, $P = \begin{bmatrix} \mathbf{x_1} & \mathbf{x_2} \end{bmatrix}$, so that
+			\[
+				P = \begin{bmatrix} 1 & -4 \\ 1 & 1 \end{bmatrix} .
+			\]
+
+		\newpage 
+
+		\exo{3.3}{3}{5}
+		\\ 
+		Assume that $A$ has $\lambda = 0$ as an eigvalue. The caracteristic polynomial is $c_A (x) = \det (x I - A)$. Since $\lambda =0$ is an eigenvalue, then $c_A (0) = 0$. This means that $\det (0I - A) = \det (A) = 0$. Hence, $A$ is not invertible.
+
+		\vspace*{0.25cm}
+
+		Now assume that $A$ is not invertible. Then $\det (A) = 0$. Using the characteristic polynomial, we see that $c_A (0) = \det (A) = 0$, hence $\lambda = 0$ is an eigenvalue of $A$.
+
+		\spc 
+
+		\exo{6.1}{1}{10} 
+		\begin{enumerate}
+			\item[a.] Since the addition is defined as the one we define on $\mathbb{R}^3$, the axioms A1-A5 are satisfied. We have to check if S1-S5 are satisfied.
+				\begin{enumerate}[label=S\arabic*.]
+					\item From the definition $a (x_1, x_2, x_3) = (ax_1, x_2, ax_3)$ is a vector in $\mathbb{R}^3$. We're good!
+					\item We have to check if $a (\mathbf{x} + \mathbf{y} ) = a \mathbf{x} + a\mathbf{y}$. We have
+						\[
+							a (\mathbf{x} + \mathbf{y}) = a (x_1 + y_1 , x_2 + y_2 , x_3 + y_3) = ( a (x_1 + y_1), x_2 + y_2 , a (x_3 + y_3) ) 
+						\]
+					and
+						\[
+							a \mathbf{x} + b \mathbf{y} = (a x_1 , x_2 , a x_3) + (ay_1 , y_2 , ay_3) = (a x_1 + ay_1 , x_2 + y_2 , a x_3 + a y_3 ) 
+						\]
+					Factoring $a$ from the first and third entries, we see that
+						\[
+							a \mathbf{x} + a \mathbf{y} = a (\mathbf{x} + \mathbf{y} ) .
+						\]
+					\item We have now to check that $(a + b) \mathbf{x} = a \mathbf{x} + b \mathbf{x}$. We have
+						\[
+							(a + b) \mathbf{x} = ( (a + b) x_1 , x_2 , (a + b) x_3 ) = (a x_1 + b x_1 , x_2 , a x_3 + b x_3 ) 
+						\]
+					and
+						\[
+							a \mathbf{x} + b \mathbf{x} = (a x_1 , x_2 , a x_3) + (b x_1 , x_2 , b x_3) = (ax_1 + bx_1 , x_2 + x_2 , a x_3 + b x_3 )
+						\]
+					We see that the second entry is now $2x_2$ which is different from $x_2$! In general, we won't have $(a + b) \mathbf{x} = a \mathbf{x} + b \mathbf{x}$.
+
+					To support that claim, let's give an example. Let $\mathbf{x} = (1, 1, 1)$. Then
+						\[
+							(1 + 2 ) \mathbf{x} = (3) \mathbf{x} = (3, 1, 3) 
+						\]
+					but
+						\[
+							(1) \mathbf{x} + (2) \mathbf{x} = (1, 1, 1) + (2, 1, 2) = (3, 2, 3) .
+						\]
+					We see that $(3, 1, 3) \neq (3, 2, 3)$. 
+				\end{enumerate}
+				\underline{Conclusion:} Axiom S3 is not satisfied with this scalar multiplication and $\mathbb{R}^3$ is not a vector space if we consider this scalar multiplication.
+			\item[b.] Since the addition is defined as the one defined on $\mathbb{R}^3$, the axioms A1-A5 are satisfied. We will check if axioms S1-S5 are satisfied. In fact, we can go straight to the last one! Indeed, to satisfy S5, we must show that 
+				\[
+					1 \mathbf{x} = \mathbf{x} .
+				\]
+			However, based on the definition of the scalar multiplication, we have
+				\[
+					1 (x_1 , x_2 , x_3) = ( (1) x_1 , 0 , (1) x_3) = (x_1 , 0 , x_3) .
+				\]
+			However, $(x_1 , 0 , x_3) \neq (x_1 , x_2 , x_3)$ in general. To support that claim, let's consider the following example. Let $\mathbf{x} = (1, 1, 1)$, then
+				\[
+					1 \mathbf{x} = (1, 0, 1) \neq (1, 1, 1) .
+				\]
+			\underline{Conclusion:} Axiom S5 is not satisfied with this scalar multiplication and $\mathbb{R}^3$ is not a vector space if we consider this scalar multiplication.
+		\end{enumerate}
+
+		\spc 
+
+		\exo{6.1}{2}{10}
+		\begin{enumerate}
+			\item[e.] We'll check if all the axioms are satisfied. The addition and scalar multiplication is the same as the ones used for $2 \times 2$ matrices.
+
+			Let $A = \begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} \end{bmatrix}$, $B = \begin{bmatrix} b_{11} & b_{12} \\ 0 & b_{22} \end{bmatrix}$, and $C = \begin{bmatrix} c_{11} & c_{12} \\ 0 & c_{22} \end{bmatrix}$ be $2 \times 2$ matrices from $V$.
+
+			We first start with the axioms A1-A5.
+				\begin{enumerate}
+				\item[A1.] We have
+					\[
+						A + B = \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} \\ 0 + 0 & a_{22} + b_{22} \end{bmatrix} = \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} \\ 0 & a_{22} + b_{22} \end{bmatrix} .
+					\]
+					We see that $A + B$ is of the same type as the matrices in $V$. We're good!
+					\item[A2.] We have
+						\[
+							A + B = \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} \\ 0 & a_{22} + b_{22} \end{bmatrix} = \begin{bmatrix} b_{11} + a_{11} & b_{12} + a_{12} \\ 0 + 0 & b_{22} + a_{22} \end{bmatrix} = \begin{bmatrix} b_{11} & b_{12} \\ 0 & b_{22} \end{bmatrix} + \begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} \end{bmatrix} = B + A .
+						\]
+						So we're good!
+					\item[A3.] Now we have
+						\[
+							(A + B) + C = \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} \\ 0 & a_{22} + b_{22} \end{bmatrix} + \begin{bmatrix} c_{11} & c_{12} \\ 0 & c_{22} \end{bmatrix} = \begin{bmatrix} a_{11} + b_{11} + c_{11} & a_{12} + b_{12} + c_{12} \\ 0 + 0 & a_{22} + b_{22} + c_{22} \end{bmatrix}
+						\]
+					and
+						\[
+							A + (B + C) = \begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} \end{bmatrix} + \begin{bmatrix} b_{11} + c_{11} & b_{12} + c_{12} \\ 0 & b_{22} + c_{22} \end{bmatrix} = \begin{bmatrix} a_{11} + b_{11} + c_{11} & a_{12} + b_{12} + c_{12} \\ 0 + 0 & a_{22} + b_{22} + c_{22} \end{bmatrix} .
+						\]
+					Hence, $(A + B) + C = A + (B + C)$ and we're good!
+					\item[A4.] Let $\mathbf{0} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$. Then, we see that
+						\[
+							A + \mathbf{0} = \begin{bmatrix} a_{11} + 0 & a_{12} + 0 \\ 0 + 0 & a_{22} + 0 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} \end{bmatrix} = A .
+						\]
+					We're still good!
+					\item[A5.] Let $-A = \begin{bmatrix} -a_{11} & -a_{12} \\ 0 & -a_{22} \end{bmatrix}$. Then
+						\[
+							A + (-A) = \begin{bmatrix} a_{11} - a_{11} & a_{12} - a_{12} \\ 0 - 0 & a_{22} - a_{22} \end{bmatrix} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} = \mathbf{0} .
+						\]
+					We are doing pretty great so far!
+			\end{enumerate}
+
+		We now verify if S1-S5 are satisfied.
+			\begin{enumerate}[label=S\arabic*.]
+				\item We have 
+					\[
+						a A = \begin{bmatrix} a a_{11} & a a_{12} \\ (a)(0) & a a_{22} \end{bmatrix} = \begin{bmatrix} a a_{11} & a a_{12} \\ 0 & a a_{22} \end{bmatrix} .
+					\]
+				Then we see that $aA$ is a matrix from $V$. We're good!
+				\item We have
+					\begin{align*}
+						a (A + B) = a \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} \\ 0 & a_{22} + b_{22} \end{bmatrix} &= \begin{bmatrix} a (a_{11} + b_{11}) & a (a_{12} + b_{12}) \\ (a) (0) & a (a_{22} + b_{22} ) \end{bmatrix} \\ 
+						&= \begin{bmatrix} a a_{11} + a b_{11} & a a_{12} + a b_{12} \\ 0 & a a_{22} + a b_{22} \end{bmatrix} 
+					\end{align*}
+				and
+					\begin{align*}
+						aA + aB = \begin{bmatrix} a a_{11} & a a_{12} \\ (a) (0) & a a_{22} \end{bmatrix} + \begin{bmatrix} a b_{11} & a b_{12} \\ (a) (0) & a b_{22} \end{bmatrix} &= \begin{bmatrix} aa_{11} + a b_{11} & a a_{12} + a b_{12} \\ 0 + 0 & a a_{22} + a b_{22} \end{bmatrix} \\ 
+						&= \begin{bmatrix} aa_{11} + a b_{11} & a a_{12} + a b_{12} \\ 0  & a a_{22} + a b_{22} \end{bmatrix}
+					\end{align*}
+				Hence $a (A + B) = aA + aB$. We're good!
+				\item We have
+					\[
+						(a + b) A = \begin{bmatrix} (a + b) a_{11} & (a + b) a_{12} \\ 0 & (a + b) a_{22} \end{bmatrix} = \begin{bmatrix} a a_{11} + b a_{11} & a a_{12} + b a_{12} \\ 0 & a a_{22} + b a_{22} \end{bmatrix} 
+					\]
+				and
+					\[
+						aA + bA = \begin{bmatrix} a a_{11} & a a_{12} \\ 0 & a a_{22} \end{bmatrix} + \begin{bmatrix} b a_{11} & b a_{12} \\ 0 & a b_{22} \end{bmatrix} = \begin{bmatrix} aa_{11} + b a_{11} & a a_{12} + b a_{12} \\ 0 & a a_{22} + b a_{22} \end{bmatrix} .
+					\]
+				Hence $(a + b)A = aA + bA$. We're still good!
+				\item We have
+					\[
+						a (bA) = a \begin{bmatrix} ba_{11} & b a_{12} \\ (b)(0) & b a_{22} \end{bmatrix} = \begin{bmatrix} ab a_{11} & ab a_{12} \\ (a)(0) & ab a_{22} \end{bmatrix} = \begin{bmatrix} ab a_{11} & ab a_{12} \\ 0 & ab a_{22} \end{bmatrix} 
+					\]
+				and
+					\[
+						(ab) A = \begin{bmatrix} ab a_{11} & ab a_{12} \\ (ab) (0) & ab a_{22} \end{bmatrix} = \begin{bmatrix} ab a_{11} & ab a_{12} \\ 0 & ab a_{22} \end{bmatrix} .
+					\]
+				We see that $a (bA) = (ab) A$. Hey, you know what? We're still good!
+				\item Finally, we have
+					\[
+						1 A = \begin{bmatrix} (1) a_{11} & (1) a_{12} \\ (1) (0) & (1) a_{22} \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} \\ 0 & a_{22} \end{bmatrix} = A .
+					\]
+				Hence, we are good!
+			\end{enumerate}
+
+		\underline{Conclusion:} The set $V$ equipped with the addition and scalar multiplication of $2 \times 2$ matrices is a vector space because A1-A5 and S1-S5 are satisfied.
+
+		\item[g.] Here, it's gonna be pretty quick. Let
+			\[
+				A = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \quad \text{ and } \quad B = \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix} .
+			\]
+		Then, after calculations, we get $\det (A) = \det (B) = 0$. 
+
+		But $A + B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ and $\det (A + B) = -1$. So $A + B$ is not part of $V$. Axiom A1 is not satisfied!
+
+		\underline{Conclusion:} The set $V$ is not a vector space if we use the usual matrix addition and scalar multiplication as operations.
+		\end{enumerate}
+
+		\spc 
+
+		\exo{6.1}{5a}{5}
+		\\ 
+		From the first equation, we find
+			\[
+				2\mathbf{x} + \mathbf{y} + (-\mathbf{y}) = \mathbf{u} + (-\mathbf{y}) \iff 2 \mathbf{x} = \mathbf{u} - \mathbf{y} \iff \mathbf{x} = \tfrac{1}{2} \mathbf{u} - \tfrac{1}{2} \mathbf{y} .
+			\]
+		Plugging $\mathbf{x}$ in the second equation, we find that
+			\[
+				5 (\tfrac{1}{2} \mathbf{u} - \tfrac{1}{2} \mathbf{y}) + 3 \mathbf{y} = \mathbf{v} \iff \tfrac{5}{2} \mathbf{u} - \tfrac{5}{2} \mathbf{y} + 3 \mathbf{y} = \mathbf{v} \iff \tfrac{5}{2} \mathbf{u} + \tfrac{1}{2} \mathbf{y} = \mathbf{v} 
+			\]
+		moving $\tfrac{5}{2} \mathbf{u}$ on the other side, we get
+			\[
+				\tfrac{1}{2} \mathbf{y} = \mathbf{v} - \tfrac{5}{2} \mathbf{u} \iff \mathbf{y} = 2 \mathbf{v} - 5 \mathbf{u} .
+			\]
+		Plugging the expression of $\mathbf{y}$ back in the expression of $\mathbf{x}$, then
+			\[
+				\mathbf{x} = \tfrac{1}{2} \mathbf{u} - \tfrac{1}{2} (2 \mathbf{v} - 5 \mathbf{u} ) = \tfrac{1}{2} \mathbf{u} - \mathbf{v} + \tfrac{5}{2} \mathbf{u} = 3 \mathbf{u} - \mathbf{v} .
+			\]
+
+		\spc 
+
+		\exo{6.1}{7b}{5}
+		\\ 
+		We have
+			\[
+				4 (3 \mathbf{u} - \mathbf{v} + \mathbf{w}) - 2 [ (3 \mathbf{u} - 2 \mathbf{v}) - 3 (\mathbf{v} - \mathbf{w})] 
+			\]
+		which is equal to
+			\begin{align*}
+				12 \mathbf{u} - 4 \mathbf{v} + 4 \mathbf{w} - 2 (3 \mathbf{u} - 2 \mathbf{v}) + 6 (\mathbf{v} - \mathbf{w}) &= 12 \mathbf{u} - 4 \mathbf{v} + 4 \mathbf{w} - 6 \mathbf{u} + 4 \mathbf{v} + 6 \mathbf{v} - 6 \mathbf{w} \\ 
+				&= 6 \mathbf{u} + 6 \mathbf{v} -2 \mathbf{w} .
+			\end{align*}
+		and
+			\[
+				6 (\mathbf{w} - \mathbf{u} - \mathbf{v}) = 6 \mathbf{w} - 6 \mathbf{u} - 6 \mathbf{v} .
+			\]
+		Hence, the answer is $4 \mathbf{w}$.
+			
+
+
+
+\end{document}

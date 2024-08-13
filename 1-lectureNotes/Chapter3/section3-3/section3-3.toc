@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Why Diagonalization?}{2}{section*.1}%
+\contentsline {section}{Eigenvalues and Eigenvectors}{3}{section*.2}%
+\contentsline {subsubsection}{Finding eigenvalues}{4}{subsubsection*.3}%
+\contentsline {subsubsection}{Finding Eigenvectors}{7}{subsubsection*.4}%
+\contentsline {section}{Diagonalization}{10}{section*.5}%

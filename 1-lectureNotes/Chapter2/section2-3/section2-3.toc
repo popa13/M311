@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Composition of Transformations}{2}{section*.1}%
+\contentsline {subsubsection}{Composing Two Matrix Transformation}{3}{subsubsection*.2}%
+\contentsline {section}{Matrix Product}{4}{section*.3}%
+\contentsline {subsubsection}{Dot Product Rule}{5}{subsubsection*.4}%
+\contentsline {section}{Block Multiplication}{11}{section*.7}%
+\contentsline {subsubsection}{Matrix Product with Blocks}{11}{subsubsection*.8}%

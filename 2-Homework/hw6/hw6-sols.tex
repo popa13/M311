@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 1}}
+\rhead{Fall 2023}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 6 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{3.1}{1}{20}
+	\begin{enumerate}
+		\item[e.] We have
+			\[
+			 	\det \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} = (\cos \theta ) (\cos \theta ) - (-\sin \theta) (\sin \theta ) = \cos^2 \theta + \sin^2 \theta = 1 .
+			 \] 
+		\item[f.] We develop along the first row. We get
+			\begin{align*}
+				\det \begin{bmatrix} 2 & 0 & -3 \\ 1 & 2 & 5 \\ 0 & 3 & 0 \end{bmatrix} &= 2 \det \begin{bmatrix} 2 & 5 \\ 3 & 0 \end{bmatrix} - (0) \det \begin{bmatrix} 1 & 5 \\ 0 & 0 \end{bmatrix} + (-3) \det \begin{bmatrix} 1 & 2 \\ 0 & 3 \end{bmatrix} \\ 
+				&= 2 (-15) + 0 - 3 (3) = -39 .
+			\end{align*}
+		\item[k.] We develop the determinant along the first row again. We get
+			\begin{align*}
+			\det \begin{bmatrix} 0 & 1 & -1 & 0 \\ 3 & 0 & 0 & 2 \\ 0 & 1 & 2 & 1 \\ 5 & 0 & 0 & 7 \end{bmatrix} &= -(1) \det \begin{bmatrix} 3 & 0 & 2 \\ 0 & 2 & 1 \\ 5 & 0 & 7 \end{bmatrix} + (-1) \det \begin{bmatrix} 3 & 0 & 2 \\ 0 & 1 & 1 \\ 5 & 0 & 7 \end{bmatrix} \\ 
+			&= (-1) (2) \det \begin{bmatrix} 3 & 2 \\ 5 & 7 \end{bmatrix} + (-1) (1) \det \begin{bmatrix} 3 & 2 \\ 5 & 7 \end{bmatrix} \\ 
+			&= (-2)(11) - (21 - 10) \\ 
+			&= -33 .
+			\end{align*}
+		\item[n.] Your answer should be $-56$.
+	\end{enumerate}
+
+\spc 
+
+	\exo{3.1}{7a}{20}
+	\\ 
+	Let $A$ be the matrix such that $\det A = -1$. Let $B$ be the matrix in part a. Here are the steps to go from $A \ra B$.
+		\begin{enumerate}
+			\item Replaced row 1 of $A$ by $R_1 + 3R_2$. Call this matrix $A_1$. We have $\det A_1 = \det A$. 
+			\item Replaced $R_3$ of $A_1$ by $-R_3$. Call this new matrix $A_2$. Then $\det A_2 = -\det A_1 = - \det A$. 
+			\item Replace $R_2$ of $A_2$ by $2R_2$. Call this new matrix $A_3$. Then $\det A_3 = 2 \det A_2 = -2 \det A$. 
+			\item Swap $R_1$ with $R_2$ of $A_3$. Call this new matrix $A_4$. Then $\det A_4 = -\det A_3 = 2 \det A$.
+			\item Swap $R_2$ with $R_3$ of $A_4$. Call this new matrix $A_5$ which is now $B$. Then $\det A_5 = -\det A_4 = -2 \det A$.
+		\end{enumerate}
+	Hence $\det B = -2 \det A = 2$. 
+
+	Below is the matrix obtained after each row operations:
+		\begin{align*}
+			\begin{bmatrix} 
+			a & b & c \\ p & q & r \\ x & y & z 
+			\end{bmatrix}
+			&\longrightarrow 
+			\begin{bmatrix}
+			a + 3p & b + 3q & c + 3r \\ 
+			p & q & r \\ 
+			x & y & z
+			\end{bmatrix}
+			\longrightarrow 
+			\begin{bmatrix}
+			a + 3p & b + 3q & c + 3r \\ 
+			p & q & r \\ 
+			-x & -y & -z
+			\end{bmatrix} \\ 
+			& \longrightarrow 
+			\begin{bmatrix}
+			a + 3p & b + 3q & c + 3r \\ 
+			2p & 2q & 2r \\ 
+			-x & -y & -z
+			\end{bmatrix}
+			\longrightarrow 
+			\begin{bmatrix}
+			-x & -y & -z \\ 
+			2p & 2q & 2r \\ 
+			a + 3p & b + 3q & c + 3r
+			\end{bmatrix} \\ 
+			& \longrightarrow 
+			\begin{bmatrix}
+			-x & -y & -z \\ 
+			a + 3p & b + 3q & c + 3r \\ 
+			2p & 2q & 2r
+			\end{bmatrix}
+		\end{align*}
+
+\spc 
+
+	\exo{3.1}{15a}{5}
+	\\ 
+	The simple trick is to develop along the last column of the matrix and find that the coefficient $b$ in front of $y$ is
+		\[
+			-\det \begin{bmatrix} 5 & -1 \\ -5 & 4 \end{bmatrix} = -(20 - 5) = -15 .
+		\]
+
+\spc 
+
+	\exo{3.1}{17}{5}
+	\\
+	Using row operations, we see that
+		\[
+			\det \begin{bmatrix} 0 & 1 & 1 & 1 \\ 1 & 0 & x & x \\ 1 & x & 0 & x \\ 1 & x & x & 0 \end{bmatrix} = \det \begin{bmatrix} 0 & 1 & 1 & 1 \\ 0 & -x & 0 & x \\ 0 & 0 & -x & x \\ 1 & x & x & 0 \end{bmatrix} = - \det \begin{bmatrix} 1 & x & x & 0 \\ 0 & -x & 0 & x \\ 0 & 0 & -x & x \\ 0 & 1 & 1 & 1 \end{bmatrix}
+		\]
+	and
+		\[
+			- \det \begin{bmatrix} 1 & x & x & 0 \\ 0 & -x & 0 & x \\ 0 & 0 & -x & x \\ 0 & 1 & 1 & 1 \end{bmatrix} = -x^2 \det \begin{bmatrix} 1 & x & x & 0 \\ 0 & -1 & 0 & 1 \\ 0 & 0 & -1 & 1 \\ 0 & 1 & 1 & 1 \end{bmatrix} = -x^2 \det \begin{bmatrix} 1 & x & x & 0 \\ 0 & -1 & 0 & 1 \\ 0 & 0 & -1 & 1 \\ 0 & 0 & 0 & 3 \end{bmatrix} = - 3x^2 .
+		\]
+	If $A$ denote the matrix from the beginning, then $\det A = -3x^2$. 
+
+
+\end{document}

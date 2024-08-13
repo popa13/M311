@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Terminology}{2}{section*.1}%
+\contentsline {section}{Elementary Operations}{5}{section*.2}%

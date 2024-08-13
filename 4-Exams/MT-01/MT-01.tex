@@ -1,0 +1,319 @@
+\documentclass[addpoints, 12pt]{exam}%, answers]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{arydshln}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{enumitem}
+\usepackage{systeme}
+
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+
+\usepackage{pifont}
+
+% MATH commands
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bD}{\mathbb{D}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fM}{\mathfrak{M}}
+
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\Arg}{\mathrm{Arg}\,}
+\newcommand{\Arctan}{\mathrm{Arctan}\,}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\Log}{\mathrm{Log}\,}
+\newcommand{\cis}{\mathrm{cis}\,}
+
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\Sp}{\mathrm{span}\,}
+\newcommand{\Inv}{\mathrm{Inv}\,}
+\newcommand\smallO{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\HOL}{\mathrm{Hol}}
+\newcommand{\cl}{\mathrm{clos}}
+\newcommand{\ve}{\varepsilon}
+
+\DeclareMathOperator{\dom}{dom}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%%%%%% Définitions Theorems and al.
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, mdframed = {linewidth = 2pt, backgroundcolor = yellow}]{myThmstyle}
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, postfoothook = {\vskip0.2cm}, mdframed = {linewidth = 1.5pt, backgroundcolor=green}]{myDefstyle}
+%\declaretheoremstyle[bodyfont = \normalfont , spaceabove = 0.1cm , spacebelow = 0.25cm, qed = $\blacktriangle$]{myRemstyle}
+
+%\declaretheorem[ style = myThmstyle, name=Th\'eor\`eme]{theorem}
+%\declaretheorem[style =myThmstyle, name=Proposition]{proposition}
+%\declaretheorem[style = myThmstyle, name = Corollaire]{corollary}
+%\declaretheorem[style = myThmstyle, name = Lemme]{lemma}
+%\declaretheorem[style = myThmstyle, name = Conjecture]{conjecture}
+
+%\declaretheorem[style = myDefstyle, name = D\'efinition]{definition}
+
+%\declaretheorem[style = myRemstyle, name = Remarque]{remark}
+%\declaretheorem[style = myRemstyle, name = Remarques]{remarks}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{corollary}{Corollaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Définition}[section]
+\newtheorem{example}{Exemple}[section]
+\newtheorem{remark}{\textcolor{red}{Remarque}}[section]
+\newtheorem{exer}{\textbf{Exercice}}[section]
+
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+
+\begin{document}
+	\noindent \hrulefill \\
+	\noindent MATH-311 \hfill Created by Pierre-O. Paris{\'e}\\
+	Midterm 01 (50min)\hfill February, Spring 2024\\\vspace*{-0.7cm}
+
+\noindent\hrulefill
+
+\vspace*{0.5cm}
+
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+\begin{Huge}
+\textsc{University of Hawai'i}
+\end{Huge}
+\end{minipage}
+\begin{minipage}{0.12\textwidth}
+\includegraphics[scale=0.05]{../../../../manoaseal_transparent.png}
+\end{minipage}
+\end{center}
+	
+\vspace*{0.5cm}
+
+\noindent\makebox[\textwidth]{\textbf{Last name:}\enspace \hrulefill}
+
+\vspace*{0.5cm}
+
+\noindent\makebox[\textwidth]{\textbf{First name:}\enspace\hrulefill}
+
+\vspace*{1cm}
+
+\begin{center}
+\gradetable[h][questions]
+\end{center}
+
+\vspace*{1cm}
+
+\noindent\textbf{Instructions:} 
+
+\begin{itemize}
+\item Write your complete name on your copy. 
+\item Answer all 6 questions below.
+\item Write your answers directly on the questionnaire.
+\item Show ALL your work to have full credit.
+\item Draw a square around your final answer.
+\item Return your copy when you're done or at the end of the 50min period. 
+\item No electronic devices allowed during the exam. 
+\item Scientific calculator allowed only (no graphical calculators).
+\item \textbf{Turn off your cellphone(s) during the exam}.
+\item Lecture notes and the textbook are not allowed during the exam. 
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Your Signature:} \hrulefill
+
+\vspace*{1.5cm}
+
+\noindent\textsc{May the Force be with you!}\\
+\textsc{Pierre}
+
+\newpage % End of cover page
+
+\phantom{2}
+
+\newpage
+
+\qformat{\rule{0.3\textwidth}{.4pt} \begin{large}{\textsc{Question}} \thequestion \end{large} \hspace*{0.2cm} \hrulefill \hspace*{0.1cm} \textbf{(\totalpoints\hspace*{0.1cm} pts)}}
+
+
+\begin{questions}
+
+\question[10]
+
+Find the solution to the following system of linear equations:
+  \[
+    \systeme{x_1 + x_2 + 3x_3 - x_4 = 3, 2x_1 - 2x_2 + x_3 + x_4 = 0} 
+  \]
+Does it have one solution, or infinitely many solutions?
+
+\newpage 
+
+\question
+
+Consider the following vectors:
+  \[
+    \mathbf{x} = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , \, \mathbf{y} = \begin{bmatrix} 1 \\ -1 \\ 2 \\ -1 \end{bmatrix} , \, \mathbf{z} = \begin{bmatrix} -2 \\ 3 \\ 2 \\ 0 \end{bmatrix} , \, \mathbf{v} = \begin{bmatrix} -1 \\ 1 \\ 0 \\ 1 \end{bmatrix} , \, \mathbf{w} = \begin{bmatrix} 9 \\ -8 \\ 0 \\ 1 \end{bmatrix} .
+  \]
+We would like to know if $\mathbf{w}$ is a linear combination of $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z}$ and $\mathbf{v}$.
+
+\begin{parts}
+\part[5] 
+  Write down the system of linear equations corresponding to this problem. 
+  %What is the system of linear equations to solve to know if $\mathbf{w}$ is a linear combination of $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z}$, and $\mathbf{v}$? Write it down, but 
+  \textbf{DO NOT SOLVE THE SYSTEM}.
+\part[5]
+  If the RREF of the augmented matrix of the system from part (a) is
+    \[
+      \begin{bmatrix}[cccc|c]
+      1 & 0 & 0 & 0 & 2\\0 & 1 & 0 & 0 & 2\\0 & 0 & 1 & 0 & -3\\0 & 0 & 0 & 1 & 1
+      \end{bmatrix} ,
+    \]
+  can you express $\mathbf{w}$ as a linear combination of $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z}$, and $\mathbf{v}$? If so, write $\mathbf{w}$ as a linear combination of the other vectors.
+
+\end{parts}
+
+
+\newpage 
+
+\question
+
+Consider the following homogeneous system of linear equations:
+  \[
+    \systeme{x_1 + x_2 + x_3 + x_4 = 0 , 2x_1 - x_2 + x_3 - 2x_4 = 0 , 3x_1 - x_2 + 2x_3 - x_4 = 0} .
+  \]
+  \begin{parts} 
+  \part[2] Write the augmented matrix of the system.
+  \part[2] Are there one solution or infinitely many solutions? Justify your answer.
+  \part[6] The RREF of the augmented matrix of the system is
+    \[
+      \begin{bmatrix}[cccc|c]
+      1 & 0 & 0 & -3 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 1 & 4 & 0 
+      \end{bmatrix}
+    \]
+  Express the solution as a linear combination of basic solution(s).
+  \end{parts}
+
+\newpage 
+
+\question[10] 
+
+Find the entries of the matrix $A$ if $A$ satisfies the equation:
+  \[
+    \Big( 2A^\top - 5 \begin{bmatrix} 1 & 0 \\ -1 & 2 \end{bmatrix} \Big)^{\top} = 4A - 9 \begin{bmatrix} 1 & 1 \\ -1 & 0 \end{bmatrix} .
+  \]
+
+
+\newpage 
+
+\question[6] 
+
+A square matrix $A$ is \textbf{skew-symmetric} if $A^\top = -A$. Show that if $A$ and $B$ are skew-symmetric, then $A - B$ is skew-symmetric.
+
+\newpage 
+
+\question[4]
+\noaddpoints
+Answer the following questions with \textbf{True} or \textbf{False}. Write down you answers on the line at the end of each question. Justify briefly your answer in the space after the statement of the problem.
+
+  \begin{parts}
+  \pointformat{(\hspace*{0.35cm}/ \thepoints)}
+  \pointname{}
+  \pointsinrightmargin
+  
+  \part[1]
+  A matrix $B$ with RREF $\begin{bmatrix} 1 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$ has $\mathrm{rank}\, (A) = 2$. 
+  \begin{solution}[\stretch{1}]
+  
+  \end{solution}
+  \answerline[True]
+  
+  \part[1]
+  A homogeneous system can have no solution.
+  \begin{solution}[\stretch{1}]
+  
+  \end{solution}
+  \answerline[False]
+  
+  \part[1]
+  If $\mathbf{x_1}$ and $\mathbf{x_2}$ are solutions to a system of linear equations denoted by $(S)$, then $2\mathbf{x_1} - \mathbf{x_2}$ is also a solution of the system $(S)$. 
+  \begin{solution}[\stretch{1}]
+  
+  \end{solution}
+  \answerline[False]
+  
+  \part[1]
+  A system of $3$ linear equations in $2$ variables with a coefficient matrix of rank $2$ has a unique solution.
+  \begin{solution}[\stretch{1}]
+  
+  \end{solution}
+  \answerline[False]
+
+  \end{parts}
+
+\end{questions}
+
+
+\end{document}

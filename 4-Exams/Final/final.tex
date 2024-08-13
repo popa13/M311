@@ -1,0 +1,269 @@
+\documentclass[addpoints, 12pt]{exam}%, answers]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{arydshln}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{enumitem}
+\usepackage{systeme}
+
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{thmtools}
+\usepackage{wrapfig}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+
+\usepackage{pifont}
+
+% MATH commands
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bD}{\mathbb{D}}
+
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+
+\newcommand{\fK}{\mathfrak{K}}
+\newcommand{\fM}{\mathfrak{M}}
+
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
+\newcommand{\Arg}{\mathrm{Arg}\,}
+\newcommand{\Arctan}{\mathrm{Arctan}\,}
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\Log}{\mathrm{Log}\,}
+\newcommand{\cis}{\mathrm{cis}\,}
+
+\newcommand{\ran}{\mathrm{ran}\,}
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\Sp}{\mathrm{span}\,}
+\newcommand{\Inv}{\mathrm{Inv}\,}
+\newcommand\smallO{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\HOL}{\mathrm{Hol}}
+\newcommand{\cl}{\mathrm{clos}}
+\newcommand{\ve}{\varepsilon}
+
+\DeclareMathOperator{\dom}{dom}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%%%%%% Définitions Theorems and al.
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, mdframed = {linewidth = 2pt, backgroundcolor = yellow}]{myThmstyle}
+%\declaretheoremstyle[preheadhook = {\vskip0.2cm}, postfoothook = {\vskip0.2cm}, mdframed = {linewidth = 1.5pt, backgroundcolor=green}]{myDefstyle}
+%\declaretheoremstyle[bodyfont = \normalfont , spaceabove = 0.1cm , spacebelow = 0.25cm, qed = $\blacktriangle$]{myRemstyle}
+
+%\declaretheorem[ style = myThmstyle, name=Th\'eor\`eme]{theorem}
+%\declaretheorem[style =myThmstyle, name=Proposition]{proposition}
+%\declaretheorem[style = myThmstyle, name = Corollaire]{corollary}
+%\declaretheorem[style = myThmstyle, name = Lemme]{lemma}
+%\declaretheorem[style = myThmstyle, name = Conjecture]{conjecture}
+
+%\declaretheorem[style = myDefstyle, name = D\'efinition]{definition}
+
+%\declaretheorem[style = myRemstyle, name = Remarque]{remark}
+%\declaretheorem[style = myRemstyle, name = Remarques]{remarks}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{corollary}{Corollaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Définition}[section]
+\newtheorem{example}{Exemple}[section]
+\newtheorem{remark}{\textcolor{red}{Remarque}}[section]
+\newtheorem{exer}{\textbf{Exercice}}[section]
+
+
+\tikzstyle{myboxT} = [draw=black, fill=black!0,line width = 1pt,
+    rectangle, rounded corners = 0pt, inner sep=8pt, inner ysep=8pt]
+
+\begin{document}
+  \noindent \hrulefill \\
+  \noindent MATH-311 \hfill Created by Pierre-O. Paris{\'e}\\
+  Final (2h)\hfill May, Spring 2024\\\vspace*{-0.7cm}
+
+\noindent\hrulefill
+
+\vspace*{0.5cm}
+
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+\begin{Huge}
+\textsc{University of Hawai'i}
+\end{Huge}
+\end{minipage}
+\begin{minipage}{0.12\textwidth}
+\includegraphics[scale=0.05]{../../../../manoaseal_transparent.png}
+\end{minipage}
+\end{center}
+  
+\vspace*{0.5cm}
+
+\noindent\makebox[\textwidth]{\textbf{Last name:}\enspace \hrulefill}
+
+\vspace*{0.5cm}
+
+\noindent\makebox[\textwidth]{\textbf{First name:}\enspace\hrulefill}
+
+\vspace*{1cm}
+
+\begin{center}
+\gradetable[h][questions]
+\end{center}
+
+\vspace*{1cm}
+
+\noindent\textbf{Instructions:} 
+
+\begin{itemize}
+\item Write your complete name on your copy. 
+\item Answer all 4 questions below.
+\item Write your answers directly on the questionnaire.
+\item Show ALL your work to have full credit.
+\item Draw a square around your final answer.
+\item Return your copy when you're done or at the end of the 50min period. 
+\item No electronic devices allowed during the exam. 
+\item Scientific calculator allowed only (no graphical calculators).
+\item \textbf{Turn off your cellphone(s) during the exam}.
+\item Lecture notes and the textbook are not allowed during the exam. 
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Your Signature:} \hrulefill
+
+\vspace*{1.5cm}
+
+\noindent\textsc{May the Force be with you!}\\
+\textsc{Pierre}
+
+\newpage % End of cover page
+
+\phantom{2}
+
+\newpage
+
+\qformat{\rule{0.3\textwidth}{.4pt} \begin{large}{\textsc{Question}} \thequestion \end{large} \hspace*{0.2cm} \hrulefill \hspace*{0.1cm} \textbf{(\totalpoints\hspace*{0.1cm} pts)}}
+
+\pointpoints{Pt}{Pts}
+
+
+\begin{questions}
+
+\question 
+
+Let $T : \mathbb{R}^3 \ra \mathbb{R}^3$ be defined by $T (x, y, z) = (2y, z, z)$.
+  \begin{parts}
+  \part[5]
+  Show that $T$ is a linear transformation.
+  \part[5]
+  Find the kernel of $T$ and its dimension.
+  \part[5]
+  Using the Dimension Theorem, deduce the rank of $T$.
+  \end{parts}
+
+\newpage 
+
+\question 
+
+Let $V = \mathbb{R}^3$. Let $B$ be the standard basis $\{ (1, 0, 0), (0, 1, 0) , (0, 0, 1) \}$ and let the set $D = \{ (1, 2, 0), (0, -1, 2), (0, 2, 0) \}$ be another basis of $\mathbb{R}^3$.
+
+  \begin{parts}
+  \part[10]
+  Knowing that  
+     \begin{itemize}[label=\textbullet]
+     \item $(1, 0, 0) = a (1, 2, 0) + b (0, -1, 2) + c (0, 2, 0)$, where $a = 1$, $b = 0$, $c = -1$;
+     \item $(0, 1, 0) = a(1, 2, 0) + b (0, -1, 2) + c (0, 2, 0)$, where $a = 0$, $b = 0$, $c = 1/2$;
+     \item $(0, 0, 1) = a(1, 2, 0) + b (0, -1, 2) + c (0, 2, 0)$, where $a = 0$, $b = 1/2$, $c = 1/4$;
+     \end{itemize}
+    Find the change matrix $P_{D \leftarrow B}$. Justify carefully your answer.
+  \part[5]
+  Let $T (x, y, z) = (2y, z, z)$. Find the matrix representation of $T$ on the basis $B$, that is $M_B (T)$.
+  \end{parts}
+
+\newpage 
+
+\question 
+
+Let $U = \mathrm{span} \, \{ (-1, 0, 3) , (0, -3, 2) \}$. 
+
+  \begin{parts}
+    \part[3] 
+    Are $(-1, 0, 3)$ and $(0, -3, 2)$ orthogonal?
+    \part[5]
+    What is the dimension of $U$. Justify carefully your answer.
+    \part[5]
+    Using the Gram-Schmidt process, transform the set of vectors $\{ (-1, 0, 3) , (0, -3, 2) \}$ in a set of orthogonal vectors $F$.
+    \part[2]
+    Illustrate visually the Gram-Schmidt orthogonalization process for two vectors in $\mathbb{R}^2$.
+  \end{parts}
+
+\newpage 
+
+\question
+
+Assume that $T : V \ra \mathbb{R}^2$ is a linear transformation where $V$ is a vector space and $\mathbb{R}$ is the vector space of real numbers. Let $\{ \mathbf{v_1} , \mathbf{v_2} , \mathbf{v_3} \}$ be a basis of $V$. 
+  \begin{parts}
+  \part[1]
+  If $T (\mathbf{v_1}) = (2, 2)$, $T (\mathbf{v_2} ) = (1, 2)$ and $T (\mathbf{v_3}) = (2, 1)$, show that $-3\mathbf{v_1} + 2\mathbf{v_2} + 2 \mathbf{v_3} \in \ker T$. Explain carefully your answer.
+  \part[4]
+  If $T (\mathbf{v_1})$, $T (\mathbf{v_2})$ and $T( \mathbf{v_3})$ are defined as in part (a), find the nullity of $T$. Explain carefully your answer.
+  \end{parts}
+
+
+
+
+\end{questions}
+
+\end{document}

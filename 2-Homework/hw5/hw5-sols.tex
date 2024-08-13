@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 1}}
+\rhead{Spring 2024}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 5 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{2.4}{1}{4}
+
+	\begin{enumerate}
+		\item[b.] We have
+			\[
+				\begin{bmatrix}
+				3 & 0 \\ 
+				1 & -4
+				\end{bmatrix} 
+				(\tfrac{1}{2}) 
+				\begin{bmatrix} 
+				4 & 0 \\ 
+				1 & -3 
+				\end{bmatrix}
+				= (\tfrac{1}{2}) \begin{bmatrix}12 & 0\\0 & 12\end{bmatrix} = \begin{bmatrix} 6 & 0 \\ 0 & 6 \end{bmatrix} .
+			\]
+		Here, the matrix are not inverse of each other because we don't have $AB = I$. We can stop here and we don't have to calculate $BA$.
+		\item[d.] We have
+			\[
+				\begin{bmatrix}
+				3 & 0 \\ 
+				0 & 5
+				\end{bmatrix} 
+				\begin{bmatrix} 
+				\tfrac{1}{3} & 0 \\ 
+				0 & \tfrac{1}{5} 
+				\end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+			\]
+			and
+			\[
+				\begin{bmatrix}
+				\tfrac{1}{3} & 0 \\ 
+				0 & \tfrac{1}{5} 
+				\end{bmatrix} 
+				\begin{bmatrix} 
+				3 & 0 \\ 
+				0 & 5 
+				\end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} .
+			\]
+			Therefore the two matrices are inverses of each other.
+	\end{enumerate}
+
+	\spc 
+
+	\exo{2.4}{3b}{6}
+	\\ 
+	The system can be put in matrix form:
+		\[
+			\begin{bmatrix} 
+			2 & -3 \\ 
+			1 & -4 
+			\end{bmatrix} 
+			\begin{bmatrix} 
+			x\\ y 
+			\end{bmatrix}
+			= 
+			\begin{bmatrix}
+			0 \\ 1
+			\end{bmatrix}
+		\]
+	Using the formula for the inverse of a $2 \times 2$ matrix with $a = 2$, $b = -3$, $c = 1$, and $d = -4$, we have
+		\[
+			\begin{bmatrix} 
+			2 & -3 \\ 
+			1 & -4 
+			\end{bmatrix}^{-1} = -\tfrac{1}{5} \begin{bmatrix} -4 & 3 \\ -1 & 2 \end{bmatrix}
+		\]
+	Hence the solution is given by
+		\[
+			\begin{bmatrix}
+			x \\ y
+			\end{bmatrix}
+			= -\tfrac{1}{5} \begin{bmatrix} -4 & 3 \\ -1 & 2 \end{bmatrix} \begin{bmatrix}0 \\ 1 \end{bmatrix} = \begin{bmatrix} -3/5 \\ -2/5 \end{bmatrix} .
+		\]
+
+	\spc 
+
+	\exo{2.4}{5}{10}
+
+	\begin{enumerate}
+		\item[d.] The inverse does not distribute on the addition nor the substraction. We first take the inverse on each side to get
+			\[
+				( (I - 2A^\top)^{-1})^{-1} = \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix}^{-1} \iff ((I - 2A^\top)^{-1})^{-1} = \begin{bmatrix} 1 & -1 \\ -1 & 2 \end{bmatrix}.
+			\]
+		The left-hand side becomes simply $I - 2A^\top$ and therefore
+			\[
+				I - 2A^\top = \begin{bmatrix} 1 & -1 \\ -1 & 2 \end{bmatrix} \iff \begin{bmatrix} 0 & 1 \\ 1 & -1 \end{bmatrix} = 2A^\top \iff \begin{bmatrix} 0 & 1/2 \\ 1/2 & -1/2 \end{bmatrix} = A^\top .
+			\]
+		We take the transpose on both side and since $(A^\top)^\top = A$, we get
+			\[
+				\begin{bmatrix} 0 & 1/2 \\ 1/2 & -1/2 \end{bmatrix}^\top = A \iff A = \begin{bmatrix} 0 & 1/2 \\ 1/2 & -1/2 \end{bmatrix} .
+			\]
+
+		\item[g.] We apply the same stategy. We start by taking the inverse on each side:
+			\[
+				( (A^\top - 2I)^{-1})^{-1} = \Big( 2 \begin{bmatrix} 1 & 1 \\ 2 & 3 \end{bmatrix} \Big)^{-1} \iff A^\top - 2I = \tfrac{1}{2} \begin{bmatrix} 3 & -1 \\ -2 & 1 \end{bmatrix} .
+			\]
+		After multiplying by $1/2$ on the right and move the $2I$ on the other side, we get
+			\[
+				A^\top = \begin{bmatrix} 3/2 & -1/2 \\ -1 & 1/2 \end{bmatrix} + 2I \iff A^\top = \begin{bmatrix} 7/2 & -1/2 \\ -1 & 5/2 \end{bmatrix} \iff A = \begin{bmatrix} 7/2 & -1 \\ -1/2 & 5/2 \end{bmatrix} .
+			\]
+	\end{enumerate}
+
+\spc 
+
+\exo{2.4}{9}{4}
+
+\begin{enumerate}
+	\item[b.] This is false. For example, $I - I = O$ is not inversibe, but $I$ is invertible.
+	\item[c.] This is true. If $A$ and $B$ are invertible, then $A^{-1}$ and $B$ are invertible. Therefore, from the properties of inverses, $A^{-1}B$ is invertible. Again, from the properties of the inverse, we know that the conjugate of an invertible matrix will be invertible, hence $(A^{-1} B)^{\top}$ is invertible.
+\end{enumerate}
+
+\spc 
+
+\exo{2.4}{39a}{5}
+\\ 
+Assume that $P$ is idempotent and invertible, but $P \neq I$. We have $P^2 = P$, which can be rewritten as $P^2- P = 0$. Factoring one $P$ on the left, we get
+	\[
+		P (P - I) = O \iff P^{-1} P (P - I) = P^{-1} O \iff P - I = O \iff P = I .
+	\]
+We get $P \neq I$ and $P = I$. This is a contradiction and the only invertible idempotent is $I$.
+
+\spc 
+
+\exo{2.5}{1}{6}
+
+\begin{enumerate}
+	\item[b.] Let $R_1$, $R_2$, and $R_3$ be the rows of an arbitrary $3 \times 3$ matrix $A$. The elementary matrix $E$ interchanges $R_1$ with $R_3$. The inverse $E^{-1}$ must therefore undo what $E$ does, so it must interchange $R_1$ and $R_3$ again:
+		\[
+			E^{-1} = \begin{bmatrix}
+			0 & 0 & 1 \\ 
+			0 & 1 & 0 \\ 
+			1 & 0 & 0
+			\end{bmatrix} .
+		\]
+	\item[d.]  Let $R_1$, $R_2$, and $R_3$ be the rows of an arbitrary $3 \time 3$ matrix $A$. The elementary matrix $E$ replace the second row of $A$ by $-2R_1 + R_2$. The inverse $E^{-1}$ must therefore undo what $E$ does, so it must replace the second row by $2R_1 + R_2$. Therefore the inverse of $E$ is
+		\[
+			E^{-1} = \begin{bmatrix}
+			1 & 0 & 0 \\ 
+			2 & 1 & 0 \\ 
+			0 & 0 & 1 
+			\end{bmatrix} .
+		\]
+\end{enumerate}
+
+\spc 
+
+\exo{2.5}{6b}{15}
+\\ 
+The first operation is $R_2 - 5 R_1$, so the elementary matrix corresponding to that operation is
+	\[
+		E_1 = \begin{bmatrix} 1 & 0 \\ -5 & 1 \end{bmatrix} .
+	\]
+	Multiplying by $E_1$ to the left of $A$, we get
+	\[
+		E_1 A
+		 = \begin{bmatrix}1 & 2 & 1\\0 & 2 & -6\end{bmatrix}
+	\]
+
+The second operation is $R_1 - R_2$, so the elementary matrix corresponding to that second operation is
+	\[
+		E_2 = \begin{bmatrix} 1 & -1 \\ 0 & 1 \end{bmatrix} . 
+	\]
+Multiplying by $E_2$ to the left of $E_1 A$, we get
+	\[
+		E_2 E_1 A = \begin{bmatrix}1 & 0 & 7\\0 & 2 & -6\end{bmatrix}
+	\]
+
+The third operation is $\tfrac{1}{2} R_2$, so the elementary matrix corresponding to that third operation is
+	\[
+		E_3 = \begin{bmatrix} 1 & 0 \\ 0 & 1/2 \end{bmatrix} .
+	\]
+Multiplying by $E_3$ to the left of $E_2 E_1 A$, we get
+	\[
+		E_3 E_2 E_1 A = \begin{bmatrix}1 & 0 & 7\\0 & 1 & -3\end{bmatrix}.
+	\]
+
+Hence, we get that
+	\[
+		U = E_3 E_2 E_1 \quad \text{ and } \quad R = \begin{bmatrix}1 & 0 & 7\\0 & 1 & -3\end{bmatrix} .
+	\]
+
+
+\end{document}

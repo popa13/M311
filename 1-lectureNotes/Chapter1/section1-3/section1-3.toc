@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Terminology}{2}{section*.1}%
+\contentsline {section}{Linear Combinations}{3}{section*.2}%
+\contentsline {section}{Basic Solutions}{6}{section*.3}%

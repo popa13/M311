@@ -1,0 +1,320 @@
+\documentclass[20pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{systeme}
+\sysdelim..
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage[capitalise]{cleveref}
+\usepackage{circledsteps}
+
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=3cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\curl}{\mathrm{curl} \,}
+\newcommand{\hint}[1]{\scalebox{2}{$\displaystyle\int_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiint}[1]{\scalebox{2}{$\displaystyle\iint_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiiint}[1]{\scalebox{2}{$\displaystyle\iiint_{\scalebox{0.35}{$#1$}}$}\,}
+\renewcommand{\div}{\mathrm{div}\,}
+
+\DeclareMathOperator{\Span}{span}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 311}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{theorem}
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{theorem}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Theorem~\thetheorem.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{definition}
+\NewEnviron{definition}%
+	{%
+	\noindent\refstepcounter{definition}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Definition~\thedefinition.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{algo}
+\NewEnviron{algorithm}
+	{%
+	\noindent\refstepcounter{algo}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Algorithm~\thealgo.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{goal}
+	{%
+	\noindent\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Goal:}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{solution}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			%\textcolor{blue}{%
+			\BODY
+			%}
+			}%
+		}%
+	}
+
+\NewEnviron{proof}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Proof.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+%\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{0.75cm}
+
+{\Huge \textsc{Math 311}}
+
+\vspace*{1.5cm}
+
+{\LARGE \textsc{Chapter 7}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 7.1: Linear Transformations}
+
+\vspace*{0.25cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Spring 2024}
+\end{center}
+
+\newpage
+
+\section{Linear Transformations}
+
+Given an $m \times n$ matrix $A$, we introduced the transformation $T_A : \mathbb{R}^n \ra \mathbb{R}^m$ defined by
+	\[
+		T_A (\mathbf{x}) = A \mathbf{x} \quad (\mathbf{x} \in \mathbb{R}^n ) .
+	\]
+From the properties of matrix multiplication, we have
+	\begin{enumerate}
+		\item[(T1)] $T_A (\mathbf{x} + \mathbf{y}) = A (\mathbf{x} + \mathbf{y}) = A \mathbf{x} + A\mathbf{y} = T_A (\mathbf{x}) + T_A (\mathbf{y})$.
+		\item[(T2)] $T_A (a \mathbf{x}) = A (a \mathbf{x}) = a (A \mathbf{x}) = a T_A (\mathbf{x})$. 
+	\end{enumerate}
+The transformations satisfying (T1) and (T2) are very special and play an important role in linear algebra.
+
+
+\begin{definition}
+Let $V$ and $W$ be two vector spaces. A transformation $T : V \ra W$ is called a \textbf{linear transformation} if it satisfies the following two conditions for any vectors $\mathbf{v_1}$ and $\mathbf{v_2}$ in $V$ and any scalars $a$:
+	\begin{enumerate}
+		\item[(T1)] $T (\mathbf{v_1} + \mathbf{v_2}) = T (\mathbf{v_1}) + T (\mathbf{v_2})$.
+		\item[(T2)] $T (a \mathbf{v_1}) = a T (\mathbf{v_1})$. 
+	\end{enumerate}
+\end{definition}
+
+\textbf{Notations:}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+		\item The \textbf{identity transformation} is the transformation $1_V : V \ra V$ given by $1_V (\mathbf{v}) = \mathbf{v}$, for any $\mathbf{v} \in V$.
+		\item The \textbf{zero transformation} is the transformation $0 : V \ra W$ given by $0 (\mathbf{v}) = \mathbf{0}$, for any $\mathbf{v} \in V$.
+	\end{enumerate}
+
+\newpage 
+
+
+\begin{example}
+Show that the following transformation is a linear transformation.
+	\[
+		D : \mathbf{P}_n \ra \mathbf{P_{n-1}}, \qquad D (p (x)) = p' (x) .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\section{Properties}
+
+\begin{example}
+Let $T : \mathbb{R}^2 \ra \mathbb{R}^2$ be a linear transformation such that
+	\[
+		T  \begin{bmatrix} 1 \\ 1 \end{bmatrix}  = \begin{bmatrix} 2 \\ -3 \end{bmatrix} \quad \text{ and } \quad T  \begin{bmatrix} 1 \\ -2 \end{bmatrix}  = \begin{bmatrix} 5 \\ 1 \end{bmatrix} .
+	\]
+Find $T \begin{bmatrix} 4 \\ 3 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2}
+
+\vfill
+
+\begin{theorem}
+If $T : V \ra W$ is a linear transformation and $\mathbf{v_1}, \mathbf{v_2}, \ldots , \mathbf{v_k} \in V$ and $v_1, v_2, \ldots , v_k \in \mathbb{R}$, then
+	\[
+		T (v_1 \mathbf{v_1} + v_2 \mathbf{v_2} + \cdots + v_k \mathbf{v_k} ) = v_1 T (\mathbf{v_1}) + v_2 T (\mathbf{v_2}) + \cdots + v_k T (\mathbf{v_k}) .
+	\]
+\end{theorem}
+
+\newpage 
+
+\begin{example}
+Find the expression of the linear transformation $T : \mathbb{R}^2 \ra \mathbb{R}^3$ such that
+	\[
+		T \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \quad \text{ and } \quad T \begin{bmatrix} -1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2}
+
+\vfill
+
+\begin{theorem}
+Let 
+\begin{enumerate}[label=\Circled{\arabic*}]
+\item $V$ and $W$ be vector spaces
+\item $\{ \mathbf{e_1} , \mathbf{e_2} , \ldots , \mathbf{e_n} \}$ be a basis for $V$. 
+\item $\mathbf{w_1}$, $\mathbf{w_2}$, $\ldots$, $\mathbf{w_n}$ be vectors in $W$
+\end{enumerate}
+Then there exists a unique linear transformation $T : V \ra W$ satisfying $T (\mathbf{e_i}) = \mathbf{w_i}$, for any $i = 1, 2, \ldots , n$. In particular, the action of $T$ on a given $\mathbf{v} = v_1 \mathbf{e_1} + v_2 \mathbf{e_2} + \cdots + v_n \mathbf{v_n}$ is
+	\[
+		T (\mathbf{v}) = v_1 \mathbf{w_1} + v_2 \mathbf{w_2} + \cdots + v_n \mathbf{w_n} .
+	\]
+\end{theorem}
+
+
+\end{document}

@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Product Rule}{2}{section*.1}%
+\contentsline {section}{Matrix Inverses}{4}{section*.2}%
+\contentsline {section}{Transpose and Determinants}{6}{section*.3}%

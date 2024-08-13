@@ -1,0 +1,415 @@
+\documentclass[20pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{systeme}
+\sysdelim..
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage[capitalise]{cleveref}
+\usepackage{circledsteps}
+
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=3cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\curl}{\mathrm{curl} \,}
+\newcommand{\hint}[1]{\scalebox{2}{$\displaystyle\int_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiint}[1]{\scalebox{2}{$\displaystyle\iint_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiiint}[1]{\scalebox{2}{$\displaystyle\iiint_{\scalebox{0.35}{$#1$}}$}\,}
+\renewcommand{\div}{\mathrm{div}\,}
+
+\DeclareMathOperator{\Span}{span}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 311}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{theorem}
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{theorem}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Theorem~\thetheorem.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{definition}
+\NewEnviron{definition}%
+	{%
+	\noindent\refstepcounter{definition}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Definition~\thedefinition.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{algo}
+\NewEnviron{algorithm}
+	{%
+	\noindent\refstepcounter{algo}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Algorithm~\thealgo.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{goal}
+	{%
+	\noindent\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Goal:}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{solution}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			%\textcolor{blue}{%
+			\BODY
+			%}
+			}%
+		}%
+	}
+
+\NewEnviron{proof}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Proof.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+%\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{0.75cm}
+
+{\Huge \textsc{Math 311}}
+
+\vspace*{1.5cm}
+
+{\LARGE \textsc{Chapter 6}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 6.3: Linear Independence and Dimension}
+
+\vspace*{0.25cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Spring 2024}
+\end{center}
+
+\newpage
+
+
+\section{Linear Independence}
+
+\begin{example}% See Section 1.3
+Let $\mathbf{v} = \begin{bmatrix} 0 \\ -1 \\ 2 \end{bmatrix}$. Let $\mathbf{u_1} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$, $\mathbf{u_2} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}$, $\mathbf{u_3} = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}$ and $\mathbf{v_1} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}$, $\mathbf{v_2} = \begin{bmatrix} 2 \\ 1 \\ 0 \end{bmatrix}$, and $\mathbf{v_3} = \begin{bmatrix} 3 \\ 1 \\ 1 \end{bmatrix}$
+\begin{enumerate}[label=\alph*)]
+\item Consider the vectors. Can you write $\mathbf{v}$ as a unique linear combination of the vectors $\mathbf{u_1}$, $\mathbf{u_2}$, and $\mathbf{u_3}$? 
+\item Consider the vectors. Can you write the vector $\mathbf{v}$ as a unique linear combination of the vectors $\mathbf{v_1}$, $\mathbf{v_2}$, $\mathbf{v_3}$?
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\begin{definition}
+A set of vectors $\{ \mathbf{v_1} , \mathbf{v_2} , \ldots , \mathbf{v_n} \}$ in a vector space $V$ is called \textbf{linearly independent} (or simply \textbf{independent}) if 
+	\[
+		s_1 \mathbf{v_1} + s_2 \mathbf{v_2} + \cdots + s_n \mathbf{v_n} = \mathbf{0} \quad \Rightarrow \quad s_1 = s_2 = \cdots = s_n = 0 .
+	\]
+A set of vectors that is not independent is said to be \textbf{linearly dependent} (or simply \textbf{dependent}).
+\end{definition}
+
+\underline{Note:} 
+\begin{itemize}
+	\item The \textbf{trivial linear combination} of the vectors $\mathbf{v_1}$, $\mathbf{v_2}$, $\ldots$, $\mathbf{v_n}$ is the one with every coefficient zero:
+	\[
+		0 \mathbf{v_1} + 0 \mathbf{v_2} + \cdots + 0 \mathbf{v_n} .
+	\]
+	\item So the vectors $\mathbf{v_1}$, $\mathbf{v_2}$, $\ldots$, $\mathbf{v_n}$ are linearly independent if and only if the only way to write $\mathbf{0}$ is using the trivial linear combination.
+\end{itemize}
+
+\begin{example}
+Show that the set
+	\[
+		\left\{ \begin{bmatrix} 1 & 1 \\ 0 & 0 \end{bmatrix} , \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix} , \begin{bmatrix} 0 & 0 \\ 1 & -1 \end{bmatrix} , \begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix} \right\} 
+	\]
+is independent.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2} 
+
+\newpage 
+
+\begin{example} 
+Let $\{ \mathbf{x} , \mathbf{y} , \mathbf{z} , \mathbf{w} \}$ be an independent set in a vector space $V$. Which of the following set is indepedent?
+	\begin{enumerate}[label=\alph*)]
+		\item $\{ \mathbf{x} - \mathbf{y} , \mathbf{y} - \mathbf{z} , \mathbf{z} - \mathbf{x} \}$.
+		\item $\{ \mathbf{x} - \mathbf{y} , \mathbf{y} - \mathbf{z} , \mathbf{z} - \mathbf{w} , \mathbf{w} - \mathbf{x} \}$.
+	\end{enumerate}
+\end{example} 
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+
+%\subsection{Basic Properties}
+
+%\begin{enumerate}[label=\Circled{\arabic*}]
+	%\item If $\{ \mathbf{v_1} , \mathbf{v_2} , \ldots , \mathbf{v_n} \}$ is an independent set of vectors in a vector space $V$, then any vector in $\Span \{ \mathbf{v_1} , \mathbf{v_2} , \ldots , \mathbf{v_n} \}$ has a unique representation as a linear combination of the $\mathbf{x_i}$. 
+	%\item \underline{Fundamental Theorem (p.346):} Suppose a vector space $V$ can be spanned by $n$ vectors. If any set of $m$ vectors in $V$ is linearly independent, then $m \leq n$.
+	%\item For the vector space $V = \mathbb{R}^m$, a set of vectors $\{ \mathbf{x_1} , \mathbf{x_2} , \ldots , \mathbf{x_n} \}$ is independent if and only if 
+	%	$$ 
+	%	\begin{bmatrix} \mathbf{x_1} & \mathbf{x_2} & \cdots & \mathbf{x_n} \end{bmatrix} \mathbf{s} = \mathbf{0} \quad \Rightarrow \quad \mathbf{s} = \mathbf{0} .
+	%	$$
+	%\item 
+%\end{enumerate}
+
+\newpage 
+
+\section{Basis}
+
+
+\begin{definition}
+A set $\{ \mathbf{e_1} , \mathbf{e_2} , \ldots , \mathbf{e_n} \}$ of vectors in a vector space $V$ is called a basis of $V$ if it satisfies the following two conditions:
+	\begin{enumerate}[label=\Circled{\arabic*}]
+		\item $\{ \mathbf{e_1} , \mathbf{e_2} , \ldots , \mathbf{e_n} \}$ is linearly independent.
+		\item $V = \Span \{ \mathbf{e_1} , \mathbf{e_2} , \ldots , \mathbf{e_n} \}$. 
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+Let $V = \mathbb{R}^3$. Verify the following.
+	\begin{enumerate}[label=\alph*)]
+		\item If $\mathbf{e_1}$, $\mathbf{e_2}$, $\mathbf{e_3}$ are the columns of $I_3$, then $\{ \mathbf{e_1} , \mathbf{e_2} , \mathbf{e_3} \}$ is a basis for $\mathbb{R}^3$.
+		\item $\{ \begin{bmatrix} 1 & -1 & 0 \end{bmatrix}^\top , \begin{bmatrix} 3 & 2 & -1 \end{bmatrix}^\top , \begin{bmatrix} 3 & 5 & -2 \end{bmatrix}^\top \}$ is a basis for $\mathbb{R}^3$.
+	\end{enumerate}
+\end{example}
+
+\newpage 
+
+\phantom{2}
+
+\vfill 
+
+\underline{Observations:}
+	\begin{itemize}
+		\item Invariance Theorem (p.347): If $\{ \mathbf{e}_1 , \mathbf{e}_2 , \ldots , \mathbf{e}_n \}$ is a basis for a vector space $V$ and if $\{ \mathbf{f_1} , \mathbf{f_2} , \ldots , \mathbf{f_m} \}$ is a basis for a vector space $V$, then $m = n$.
+	\end{itemize}
+
+
+\newpage 
+
+\begin{definition}
+If $\{ \mathbf{e_1} , \mathbf{e_2} , \ldots , \mathbf{e_n} \}$ is a basis of a nonzero vector space $V$, the number $n$ of vectors in the basis is called the \textbf{dimension}, and we write
+	\[
+		\dim V = n .
+	\]
+In the case of the zero vector space, we define $\dim \{ \mathbf{0} \} = 0$. 
+\end{definition}
+
+\underline{Note:}
+	\begin{enumerate}[label=\Circled{\arabic*}]
+		\item We have $\dim \mathbb{R}^m = m$ because the $n$ columns of the identity matrix $I_m$ is a basis.
+		\item We have $\dim \mathbf{M_{mn}} = mn$. Let $E_{ij}$ be the matrix with a $1$ in the $(i,j)$-entry and $0$ elsewhere. A basis for $\mathbf{M_{mn}}$ is
+			\[
+				B = \{ M_{ij} \, : \, 1 \leq i \leq m , \, 1 \leq j \leq n \} .
+			\]
+		This is called the \textbf{canonical basis} or \textbf{standard basis} of $\mathbf{M_{mn}}$. For instance, if $m = n = 2$, then a basis for $\mathbf{M_{22}}$ is
+			\begin{align*}
+				B &= \{ M_{11} , M_{12} , M_{21} , M_{22} \} \\ 
+				&= \left\{ \phantom{\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} , \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} , \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix} , \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}} \hspace*{5cm} \right\}
+			\end{align*}
+		\item We have $\dim \mathbf{P_n} = \phantom{n + 1}$.
+		\vfill 
+		\item Any subspace $U$ of a vector space $V$ is a vector space. Therefore, we can find the dimension of $U$.
+	\end{enumerate}
+
+
+\newpage 
+
+\subsubsection{Subspaces of $\mathbb{R}^m$}
+
+For subspaces of $\mathbb{R}^m$, there is a really nice way to determine a basis and the dimension of a spanning set. Let
+	\[
+		U = \Span \{ \mathbf{v_1} , \mathbf{v_2} , \ldots , \mathbf{v_n} \} .
+	\]
+Let 
+	\begin{itemize}
+		\item $A = \begin{bmatrix} \mathbf{v_1} & \mathbf{v_2} & \cdots & \mathbf{v_n} \end{bmatrix}$. 
+		\item $R$ be the RREF of $A$.
+	\end{itemize}
+Then
+	\begin{itemize}
+		\item $\dim U = $ number of pivots in $R$.
+		\item A basis for $U$ is given by the vector in the same column as the pivots.
+	\end{itemize}
+
+
+\begin{example}
+Find a basis and calculate the dimension for the following subspace of $\mathbb{R}^4$:
+	\[
+		U = \Span \{ (1, -1, 2, 0) , (2, 3, 0, 3) , (1, 9, -6, 6) \} .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2}
+
+\vfill 
+
+\underline{Note:} This trick also works for subspaces of the space of polynomials $\mathbf{P_n}$.
+
+\newpage 
+
+\subsubsection{Subspaces of Matrices}
+
+\begin{example}
+Define the subspace of $\mathbf{M_{22}}$ as
+	\[
+		U = \left\{ X \in \mathbf{M_{22}} \, : \, \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix} X = X \begin{bmatrix} 1 & 0 \\ 1 & 0 \end{bmatrix} \right\} .
+	\]
+Find a basis of $U$ and its dimension.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2}
+
+\end{document}

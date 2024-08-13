@@ -1,0 +1,460 @@
+\documentclass[20pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{systeme}
+\sysdelim..
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=3cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\curl}{\mathrm{curl} \,}
+\newcommand{\hint}[1]{\scalebox{2}{$\displaystyle\int_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiint}[1]{\scalebox{2}{$\displaystyle\iint_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiiint}[1]{\scalebox{2}{$\displaystyle\iiint_{\scalebox{0.35}{$#1$}}$}\,}
+\renewcommand{\div}{\mathrm{div}\,}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 311}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{theorem}
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{theorem}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Theorem~\thetheorem.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{definition}
+\NewEnviron{definition}%
+	{%
+	\noindent\refstepcounter{definition}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Definition~\thedefinition.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{algo}
+\NewEnviron{algorithm}
+	{%
+	\noindent\refstepcounter{algo}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Algorithm~\thealgo.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{goal}
+	{%
+	\noindent\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Goal:}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{solution}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			%\textcolor{blue}{%
+			\BODY
+			%}
+			}%
+		}%
+	}
+
+\NewEnviron{proof}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Proof.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+%\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{0.5cm}
+
+{\Huge \textsc{Math 311}}
+
+\vspace*{1cm}
+
+{\LARGE \textsc{Chapter 3}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 3.1: The Cofactor Expansion}
+
+\vspace*{0.25cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Spring 2024}
+\end{center}
+
+\newpage
+
+\section{Goal}
+
+Recall that if $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, then $\det A = ad - bc$
+and $A$ is invertible if and only if $\det A \neq 0$.
+
+\begin{goal}
+To Generalize the determinant to $n \times n$ matrix.
+\end{goal}
+
+\section{A Basic Example}
+
+If $A$ is a $3 \times 3$ square matrix and if $A$ is invertible, then we know $A$ can be carried to the identity matrix $I$. 
+
+Following the process of $A \ra I$:
+\begin{align*}
+A = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \ra \begin{bmatrix} a & b & c \\ ad & ae & af \\ ag & ah & ai \end{bmatrix} \ra \begin{bmatrix} a & b & c \\ 0 & ae - bd & af - cd \\ 0 & ah - bg & ai - cg \end{bmatrix}
+\end{align*}
+
+Set $u = ae - bd$ and $v = ah - bg$. Then
+\begin{align*}
+ \begin{bmatrix} a & b & c \\ 0 & u & af - cd \\ 0 & v & ai - cg \end{bmatrix} \ra \begin{bmatrix} a & b & c \\ 0 & u & af - cd \\ 0 & vu & u (ai - cg) \end{bmatrix} \ra \begin{bmatrix} a & b & c \\ 0 & vu & v(af - cd) \\ 0 & 0 & w \end{bmatrix}
+ \end{align*}
+$w = u (ai - cg) - v(af - cd)$. Hence, if we want to carry on the algorithm, we need that
+	\[
+		w \neq 0 
+	\]
+
+\newpage 
+
+\begin{definition}
+If $A$ is a $3 \times 3$ matrix, then
+	\[
+		\det A := w = aei + bfg + cdh - ceg - afh - bdi .
+	\]
+\end{definition}
+
+\underline{Remark:}
+	\begin{itemize}
+		\item Notice that $A$ is invertible if and only if $\det A \neq 0$.
+		\item Notice that
+			\begin{align*}
+				\det A &= a (ei - fh) - b (di - fg) + c (dh - eg) \\ 
+				&= a \det \begin{bmatrix} e & f \\ h & i \end{bmatrix} - b \det \begin{bmatrix} d & f \\ g & i \end{bmatrix} + c \det \begin{bmatrix} d & e \\ g & h \end{bmatrix} .
+			\end{align*}
+		\item The terms $+a \det \begin{bmatrix} e & f \\ h & i \end{bmatrix}$, $- b \det \begin{bmatrix} d & f \\ g & i \end{bmatrix}$ and $+c \det \begin{bmatrix} d & e \\ g & h \end{bmatrix}$ are called \textbf{cofactors} of $A$ and are denoted by $c_{11} (A)$, $c_{12} (A)$ and $c_{13} (A)$ respectively.
+	\end{itemize}
+
+\begin{example}
+Compute the determinant of $A = \begin{bmatrix} 2 & 3 & 1 \\ 1 & 0 & 1 \\ 2 & 1 & 0 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\section{Cofactors of A Matrix} 
+Notice that
+	\[
+		c_{12} (A) = (-1)^{1 + 2} \det \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix}  \phantom{= (-1)^{1 + 2} \det \begin{bmatrix} d & f \\ \\ g & i \end{bmatrix}}
+	\]
+
+We denote by $A_{ij}$ the $(n - 1) \times (n - 1)$ matrix obtained from $A$ by deleting row $i$ and column $j$.
+
+\begin{definition}
+Let $A$ be an $n \times n$ matrix. The $\mathbf{(i, j)}$\textbf{-cofactor} $c_{ij} (A)$ is the scalar defined by
+	\[
+	 	c_{ij} (A) = (-1)^{i + j} \det (A_{ij}) .
+	\] 
+Here, $(-1)^{i + j}$ is called the \textbf{sign} of the $(i, j)$-position.
+\end{definition}
+
+\begin{example}
+Find the cofactors of positions $(3,2)$ of $$A = \begin{bmatrix} 2 & 3 & 1 \\ 1 & 0 & 1 \\ 2 & 1 & 0 \end{bmatrix}.$$
+\end{example}
+
+\newpage 
+
+\section{Definition of the Determinant}
+
+\begin{definition}
+Let $A = [a_{ij}]$ be an $n \times n$ matrix. The \textbf{determinant} of $A$ is defined by
+	\[
+		\det A = a_{11} c_{11} (A) + a_{12} c_{12} (A) + \cdots + a_{1n} c_{1n} (A) .
+	\]
+\end{definition}
+
+\underline{Remark:} This is called the \textbf{cofactor expansion} of $\det A$ along row $1$.
+
+\begin{example}
+compute the determinant of $A = \begin{bmatrix} 3 & 4 & 5 & 0 \\ 1 & 7 & 2 & 0\\ 9 & 8 & -6 & 3 \\ 1 & 1 & 1 & 1 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\begin{theorem}[Proved by Pierre-Simon de Laplace (1749-1827)]\\
+The determinant of an $n \times n$ matrix $A$ can be computed by using the cofactor expansion along any row or column of $A$.
+\end{theorem}
+
+\begin{example}
+Compute $\det A$ if $A = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 2 & 3 & 1 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\section{Determinant and Row Operations}
+
+\subsubsection{Interchanging two rows}
+
+\begin{example}
+Show that 
+	\[
+		\det \begin{bmatrix} 
+		1 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0
+		\end{bmatrix} = - \det \begin{bmatrix} 1 & 0 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix} .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\begin{theorem}
+If $B$ is an $n \times n$ matrix obtained from interchanging two rows of an $n \times n$ matrix $A$, then
+	\[
+		\det (B) = - \det (A) .
+	\]
+\end{theorem}
+
+\underline{Remark:} This fact is still true if we interchange two \textit{columns} (instead of rows).
+
+\newpage 
+
+\subsubsection{Scaling a row}
+
+\begin{example}
+Show that
+	\[
+		\det \begin{bmatrix} 2 & 6 & 8 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{bmatrix} = 2 \det \begin{bmatrix} 1 & 3 & 4 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{bmatrix} .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\begin{theorem}
+If $B$ is an $n \times n$ matrix for which column $j$ is obtained by multiplying $k$ times the column $j$ of an $n \times n$ matrix $A$, with $k \neq 0$, then
+	\[
+		\det (B) = k \det (A) .
+	\]
+\end{theorem}
+
+\underline{Remark:} This fact is still true if a column $j$ of a matrix $B$ is obtained by multiplying the column $j$ of a given matrix $A$ by a nonzero scalar
+
+\newpage 
+
+\subsubsection{Subtracting a Multiple of a Row}
+
+\begin{example} 
+Show that 
+	\[
+		\det \begin{bmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 1 & 2 & 3 \end{bmatrix} = \det \begin{bmatrix} 1 & 1 & 1 \\ 2 & 4 & 3 \\ 1 & 2 & 3 \end{bmatrix} .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\begin{theorem}
+If a the row $j$ of a matrix $B$ is obtained by subtracting a multiple of a row of a matrix $A$ to the row $j$ of $A$, then
+	\[
+		\det (B) = \det (A) .
+	\]
+\end{theorem}
+
+\underline{Remark:} This remains true if we replace the row operation by the corresponding column operation.
+
+\newpage 
+
+\begin{theorem}
+Let $A$ be an $n \times n$ matrix.
+	\begin{enumerate}
+		\item If $A$ has a row (or column) of zero, then $\det (A) = 0$.
+		\item If $A$ has two identical rows (or columns), then $\det (A) = 0$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+	\item Developing $\det (A)$ along the row of zero, then $\det (A) = 0$.
+	\item Assume that the two identical rows have index $p$ and $q$. Let $B$ be the matrix obtained by interchanging rows $p$ and $q$ of $A$. Then, $A = B$. But, $\det (B) = - \det (A)$, which implies that $2 \det (A) = 0$, hence $\det (A) = 0$. \hfill $\square$
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+Find the values of $x$ for which $\det (A) = 0$, where $A = \begin{bmatrix} 1 & x & x \\ x & 1 & x \\ x & x & 1 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\section{Diagonal Matrices}
+
+\begin{example}
+Compute $\det (A)$ if $A = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 2 & 3 & 0 & 0 \\ 3 & 4 & 5 & 0 \\ 4 & 3 & 2 & 10 \end{bmatrix}$.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\begin{definition}
+A matrix $A$ is
+	\begin{enumerate}
+		\item \textbf{lower triangle} if all the entries above the main diagonal are zero.
+		\item \textbf{upper triangle} if all the entries below the main diagonal are zero.
+		\item \textbf{triangular} if it is lower triangle or upper triangle.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+If $A = [a_{ij}]$ is an $n \times n$ triangular matrix, then $\det (A) = a_{11} a_{22} \cdots a_{nn}$.
+\end{theorem}
+
+\end{document}

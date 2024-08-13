@@ -1,0 +1,436 @@
+\documentclass[20pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{systeme}
+\sysdelim..
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage[capitalise]{cleveref}
+\usepackage{circledsteps}
+
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=3cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\curl}{\mathrm{curl} \,}
+\newcommand{\hint}[1]{\scalebox{2}{$\displaystyle\int_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiint}[1]{\scalebox{2}{$\displaystyle\iint_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiiint}[1]{\scalebox{2}{$\displaystyle\iiint_{\scalebox{0.35}{$#1$}}$}\,}
+\renewcommand{\div}{\mathrm{div}\,}
+
+\DeclareMathOperator{\Span}{span}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 311}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{theorem}
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{theorem}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Theorem~\thetheorem.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{definition}
+\NewEnviron{definition}%
+	{%
+	\noindent\refstepcounter{definition}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Definition~\thedefinition.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{algo}
+\NewEnviron{algorithm}
+	{%
+	\noindent\refstepcounter{algo}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Algorithm~\thealgo.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{goal}
+	{%
+	\noindent\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Goal:}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{solution}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			%\textcolor{blue}{%
+			\BODY
+			%}
+			}%
+		}%
+	}
+
+\NewEnviron{proof}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Proof.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+%\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{0.75cm}
+
+{\Huge \textsc{Math 311}}
+
+\vspace*{1.5cm}
+
+{\LARGE \textsc{Chapter 6}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 6.1: Vector Spaces}
+
+\vspace*{0.25cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Spring 2024}
+\end{center}
+
+\newpage
+
+\section{Definition}
+
+\subsection{Column Vectors}
+
+Recall that 
+	$$
+		\mathbb{R}^n = \{ \mathbf{x} \, : \, \mathbf{x} \text{ is an } n \times 1 \text{ vector} \} .
+	$$
+	\begin{enumerate}[label=\Circled{\arabic*}]
+		\item For addition:
+			\begin{enumerate}[label=\fbox{A\arabic*.}]
+				\item %$\mathbf{x} , \mathbf{y} \in \mathbb{R}^n$ $\Rightarrow$ $\mathbf{x} + \mathbf{y} \in \mathbb{R}^n$.
+				\item %$\mathbf{x} + \mathbf{y} = \mathbf{y} + \mathbf{x}$.
+				\item %$\mathbf{x} + (\mathbf{y} + \mathbf{z} ) = (\mathbf{x} + \mathbf{y} ) + \mathbf{z}$.
+				\item %$\mathbf{x} + \mathbf{0} = \mathbf{x} = \mathbf{0} + \mathbf{x}$. 
+				\item \phantom{For each $n \times 1$ row-vector $\mathbf{x}$, there is a $n \times 1$ row vector $\mathbf{y}$ such that $\mathbf{x} + \mathbf{y} = \mathbf{y} + \mathbf{x} = \mathbf{0}$, that is $\mathbf{y} = -\mathbf{x}$.}
+				\vspace*{0.1cm}
+			\end{enumerate}
+		\item For scalar multiplication:
+			\begin{enumerate}[label=\fbox{S\arabic*.}]
+				\item %$\mathbf{x} \in \mathbb{R}^n$ $\Rightarrow$ $a \mathbf{x} \in \mathbb{R}^n$.
+				\item %$a (\mathbf{x} + \mathbf{y}) = a \mathbf{x} + a \mathbf{y}$. 
+				\item %$(a + b) \mathbf{x} = a \mathbf{x} + a \mathbf{x}$.
+				\item %$a (b \mathbf{x}) = (ab) \mathbf{x}$.
+				\item %$1 \mathbf{x} = \mathbf{x}$.
+			\end{enumerate}
+	\end{enumerate}
+
+\underline{Conclusion:} %We say that $\mathbb{R}^n$ is a \textbf{vector space}.
+
+\newpage 
+
+\subsection{General Definition}
+
+Let $V$ be a set of objects called \textbf{vectors}. Assume
+	\begin{enumerate}
+		\item \textbf{Vector Addition:} Two vectors $\mathbf{v}$ and $\mathbf{w}$ can be added and denote this operation by $\mathbf{v} + \mathbf{w}$.
+		\item \textbf{Scalar Multiplication:} Any vector $\mathbf{v}$ can be multiplied by any number (scalar) $a$ and denote this operation by $a \mathbf{v}$.
+	\end{enumerate}
+
+The set $V$ is called a \textbf{vector space} if
+	\begin{enumerate}
+		\item Axioms for the vector addition:
+			\begin{enumerate}[label=\fbox{A\arabic*.}]
+				\item \underline{Closed:} $\mathbf{v} , \mathbf{w} \in V$ $\Rightarrow$ $\mathbf{v} + \mathbf{w} \in V$.
+				\item \underline{Commutativity:} $\mathbf{v} + \mathbf{w} = \mathbf{w} + \mathbf{v}$.
+				\item \underline{Associativity:} $\mathbf{v} + (\mathbf{w} + \mathbf{z} ) = (\mathbf{v} + \mathbf{w} ) + \mathbf{z}$.
+				\item \underline{Existence of a zero vector:} $\mathbf{v} + \mathbf{0} = \mathbf{v} = \mathbf{0} + \mathbf{v}$. 
+				\item \underline{Existence of a negative:} For each $\mathbf{v}$, there is a $\mathbf{w}$ such that $\mathbf{v} + \mathbf{w} = \mathbf{w} + \mathbf{v} = \mathbf{0}$.
+			\end{enumerate}
+		\item Axioms for the scalar multiplication: 
+			\begin{enumerate}[label=\fbox{S\arabic*.}]
+				\item $\mathbf{v} \in V$ $\Rightarrow$ $a \mathbf{v} \in V$.
+				\item $a (\mathbf{v} + \mathbf{w}) = a \mathbf{v} + a \mathbf{w}$. 
+				\item $(a + b) \mathbf{v} = a \mathbf{v} + b \mathbf{v}$.
+				\item $a (b \mathbf{v}) = (ab) \mathbf{v}$.
+				\item $1 \mathbf{v} = \mathbf{v}$.
+			\end{enumerate}
+	\end{enumerate}
+
+%\underline{Note:} We can prove that the negative of $\mathbf{v}$ is $\mathbf{w} = -\mathbf{v}$. 
+
+\newpage 
+
+\section{Examples}
+
+\subsection{Spaces of Matrices}
+
+\begin{example}
+Let $\mathbf{M_{mn}}$ be the set of all $m \times n$ matrices, that is
+	\[
+		\mathbf{M_{mn}} := \{ A \, : \, A \text{ is an } m \times n \text{ matrix.} \}
+	\]
+Consider the addition and scalar multiplication for matrices. Show that $\mathbf{M_{mn}}$ is a vector space.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\subsection{Spaces of Polynomials}
+
+\begin{example}
+Consider the space $\mathbf{P_3}$ of all polynomials of degree at most $3$, that is
+	\[
+		\mathbf{P} := \{ a_3 x^3 + a_2 x^2 + a_1 x + a_0 \, : \, a_i \in \mathbb{R} \} .
+	\]
+Define
+	\begin{enumerate}
+		\item Addition: for two polynomials $p(x) = a_3 x^3 + a_2 x^2 + a_1 x + a_0$ and $q(x) = b_3 x^3 + b_2 x^2 + b_1 x + b_0$, define $p + q$ as the polynomial
+		\begin{small}
+			\begin{align*}
+				(p + q) (x) &= p (x) + q(x) \\ 
+				&= { \small (a_3 + b_3) x^3 + (a_2 + b_2) x^2 + (a_1 + b_1) x + (a_0 + b_0) } .
+			\end{align*}
+		\end{small}
+		\item Scalar multiplicatoin: for a polynomial $p (x) = a_3 x^3 + a_2 x^2 + a_1 x + a_0$, define $ap$ as the polynomial
+			\[
+				(a p) (x) = a p (x) = (a a_3) x^3 + (a a_2) x^2 + (a a_1)x + (a a_0) .
+			\]
+	\end{enumerate}
+Show that $\mathbf{P_3}$, with this addition and scalar multiplication, is a vector space.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2} 
+
+\newpage 
+
+\phantom{2}
+
+\newpage 
+
+\phantom{2} 
+
+\vfill 
+
+\underline{Note:} 
+	\begin{enumerate}[label=\Circled{\arabic*}]
+		\item The space of polynomial of degree at most $n$ is denoted by $\mathbf{P_n}$ and is a vector space using the addition and scalar multiplication introduced above.
+		\item The space of all polynomial of any degree is denoted by $\mathbf{P}$ and it is a vector space using the addition and scalar multiplication introduced above.
+	\end{enumerate}
+
+\newpage 
+
+\subsection{Weird Example}
+
+\begin{example}
+Consider the set of all $2 \times 1$ vectors $\mathbb{R}^2$. Define the addition and scalar multiplication:
+	\begin{enumerate}
+		\item $\mathbf{x} + \mathbf{y} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 + 1 \end{bmatrix}$.
+		\item $a \mathbf{x} = a \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} a x_1 \\ a x_2 + a - 1 \end{bmatrix}$. 
+	\end{enumerate}
+Show that $\mathbb{R}^2$, with these operations, is a vector space.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\phantom{2}
+
+\newpage 
+
+\phantom{2} 
+
+\newpage 
+
+\phantom{2} 
+
+\newpage 
+
+\subsection{Non-Example}
+
+\begin{example}
+Consider the set of all $2 \times 1$ vectors $\mathbb{R}^2$. Define the addition and scalar multiplication:
+	\begin{enumerate}
+		\item $\mathbf{x} + \mathbf{y} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 + 1 \end{bmatrix}$.
+		\item $a \mathbf{x} = a \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} a x_1 \\ a x_2 - 1 \end{bmatrix}$. 
+	\end{enumerate}
+Show that $\mathbb{R}^2$, with these operations, is not a vector space.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage
+
+\section{Properties}
+
+Consider a general vector space $V$.
+
+\begin{enumerate}[label=\Circled{\arabic*}]
+	\item Cancellation: If $\mathbf{u}, \mathbf{v} , \mathbf{w} \in V$, then
+		\[
+			\mathbf{v} + \mathbf{u} = \mathbf{v} + \mathbf{w} \Longrightarrow \mathbf{u} = \mathbf{w} .
+		\]
+	\item Multiplying by scalar $0$: 
+		\[
+			0 \mathbf{v} = \mathbf{0}. 
+		\]
+	\item Multiplying by the zero vector:
+		\[
+			a \mathbf{0} = \mathbf{0} .
+		\]
+	\item If $a \mathbf{v} \mathbf{0}$, then $a = 0$ or $\mathbf{v} = \mathbf{0}$.
+\end{enumerate}
+
+\begin{example}
+Simplify the following expression:
+	\[
+		3 \big( 2 (\mathbf{u} - 2 \mathbf{v} - \mathbf{w} ) + 3 (\mathbf{w} - \mathbf{v} \big) - 7 ( \mathbf{u} - 3 \mathbf{v} - \mathbf{w} ) .
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2} 
+
+\end{document}
+
+
+where we have
+	\begin{itemize}
+		\item \underline{an addition:} $\mathbf{x} + \mathbf{y}$ is obtained by adding each respective entry.
+		\item \underline{a scalar multiplication:} $a \mathbf{x}$ is obtained by multiplying each entry by $a$.
+	\end{itemize}

@@ -1,0 +1,269 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 12}}
+\rhead{Spring 2024}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Spn}{span}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 12 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+
+\noindent\hrulefill
+	
+	\spc
+
+\exo{9.1}{1}{10}
+
+	\begin{enumerate}
+		\item[a.] We want to find $a$, $b$, and $c$ such that
+			\[
+				a (x + 1) + b (x^2) + c (3) = \mathbf{v} = 2x^2 + x - 1 .
+			\]
+		Therefore	
+			\[
+				bx^2 + ax + (a + 3c) = 2x^2 + x - 1 .
+			\]
+		and $b = 2$, $a = 1$ and $1 + 3c = -1$. Therefore
+			\[
+				b = 2 , \, a = 1 \text{ and } c = -2/3 .
+			\]
+		Hence
+			\[
+				C_B (\mathbf{v}) = \begin{bmatrix} 1 \\ 2 \\ -2/3 \end{bmatrix} .
+			\]
+		\item[c.] We want to find $a$, $b$, and $c$ such that
+			\[
+				\mathbf{v} = (1, -1, 2) = a (1, -1, 0) + b (1, 1, 1) + c (0, 1, 1) .
+			\]
+		Therefore
+			\[
+				(1, -1, 2) = (a + b, -a + b + c, b + c) 
+			\]
+		and $a + b = 1$, $-a + b + c = -1$, and $b + c = 2$. Adding the first equation to the second equation, we get $2b + c = 0$ and subtracting the third equation to this last equation:
+			\[
+				2b + c - b - c = -2 \quad \Ra \quad b = -2 .
+			\]
+		We then find $a = 3$ and $c = 4$. Hence
+			\[
+				C_B (\mathbf{v}) = \begin{bmatrix} 3 \\ -2 \\ 4 \end{bmatrix} .
+			\]
+	\end{enumerate}
+
+\exo{9.1}{4}{10}
+
+	\begin{enumerate}
+		\item[a.] Since $B$ and $D$ are the standard basis, it is more easy to find the matrix representation. 
+
+		We have
+			\[
+				T (1, 0, 0) = (1, 0, 0, 1) \quad \Ra \quad C_D (T (1, 0, 0)) = \begin{bmatrix} 1 \\ 0 \\ 0 \\ 1 \end{bmatrix} ,
+			\]
+		then
+			\[
+				T (0, 1, 0) = (0, 0, 1, 2) \quad \Ra \quad C_D (T (0, 1, 0)) = \begin{bmatrix} 0 \\ 0 \\ 1 \\ 2 \end{bmatrix} ,
+			\]
+		and then
+			\[
+				T (0, 0, 1) = (1, 2, -1, 0) \quad \Ra \quad C_D (T (0, 0, 1)) = \begin{bmatrix} 1 \\ 2 \\ -1 \\ 0 \end{bmatrix} .
+			\]
+		Therefore
+			\[
+				A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 0 & 2 \\ 0 & 1 & -1 \\ 1 & 2 & 0 \end{bmatrix}
+			\]
+		is the matrix representing $T$ on the standard basis $B$ and $D$. 
+
+		We have
+			\[
+				C_B (\mathbf{v}) = \begin{bmatrix} 1 \\ -1 \\ 3 \end{bmatrix} \quad \Ra \quad C_D (T (\mathbf{v})) = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 0 & 2 \\ 0 & 1 & -1 \\ 1 & 2 & 0 \end{bmatrix} \begin{bmatrix} 1 \\ -1 \\ 3 \end{bmatrix} = \begin{bmatrix} 4 \\ 6 \\ -4 \\ -1 \end{bmatrix} .
+			\]
+		\item[c.] Let $\mathbf{b_1} = 1$, $\mathbf{b_2} = x$, and $\mathbf{b_3} = x^2$. Let $\mathbf{d_1} = (1, 0)$ and $\mathbf{d_2} = (1, -1)$.
+
+		We have
+			\[
+				T (\mathbf{b_1}) = T (1 + 0x + 0x^2) = (1, 0) \quad \Ra \quad C_D (T (\mathbf{b_1})) = (1) \mathbf{d_1} + (0) \mathbf{d_2} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} ,
+			\]
+		then
+			\[
+				T (\mathbf{b_2}) = T (0 + 1x + 0x^2) = (0, 2) \quad \Ra \quad C_D (T (\mathbf{b_2})) = (2) \mathbf{d_1} + (-2) \mathbf{d_2} = \begin{bmatrix} 2 \\ -2 \end{bmatrix} ,
+			\]
+		and
+			\[
+				T (\mathbf{b_3}) = T (0 + 0 x + 1x^2) = (1, 0) \quad \Ra \quad C_D (T (\mathbf{b_3})) = (1) \mathbf{d_1} + (0) \mathbf{d_2} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} .
+			\]
+		Therefore
+			\[
+				A = \begin{bmatrix} 1 & 2 & 1 \\ 0 & -2 & 0 \end{bmatrix}
+			\]
+		is the matrix representing $T$ on the basis $B$ and $D$. 
+
+		We have $C_B (\mathbf{v}) = \begin{bmatrix} a & b & c \end{bmatrix}^\top$ and therefore
+			\[
+				C_D (T(\mathbf{v})) =  \begin{bmatrix} 1 & 2 & 1 \\ 0 & -2 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \\ c \end{bmatrix} = \begin{bmatrix} a + 2b + c \\ -2b \end{bmatrix} . 
+			\]
+	\end{enumerate}
+
+\exo{9.1}{21a}{5}
+
+Asssume that $S$ and $T$ are linear transformations. Let $\mathbf{v} \in \ker S \cap \ker T$. This means $\mathbf{v} \in \ker S$ and $\mathbf{v} \in \ker T$. Therefore, $S (\mathbf{v}) = \mathbf{0}$ and $T (\mathbf{v}) = \mathbf{0}$. Hence
+			\[
+				(S + T) (\mathbf{v}) = S (\mathbf{v}) + T (\mathbf{v}) = \mathbf{0} + \mathbf{0} = \mathbf{0} 
+			\]
+		and $\mathbf{v} \in \ker (S + T)$.
+
+	\spc 
+
+\exo{9.2}{1a}{10}
+
+We have
+	\[
+		 (0, -1) = (-1) (0, 1) + (0) (1, 1) \quad \Ra \quad C_D ( (0, -1)) = \begin{bmatrix} -1 \\ 0 \end{bmatrix} 
+	\]
+and
+	\[
+		(2, 1) = (-1) (0, 1) + (2) (1, 1) \quad \Ra \quad C_D ( (2, 1)) = \begin{bmatrix} -1 \\ 2 \end{bmatrix} .
+	\]
+Hence, we obtain
+	\[
+		P_{D \leftarrow B} = \begin{bmatrix} -1 & -1 \\ 0 & 2 \end{bmatrix} .
+	\]
+
+For $\mathbf{v} = (3, -5)$, we have
+	\[
+		C_B (\mathbf{v}) = \begin{bmatrix} 13/2 \\ 3/2 \end{bmatrix} \text{ and } C_D (\mathbf{v}) = \begin{bmatrix} -8 \\ 3 \end{bmatrix} .
+	\]
+We therefore have
+	\[
+		P_{D \leftarrow B} C_B (\mathbf{v}) = \begin{bmatrix} -1 & -1 \\ 0 & 2 \end{bmatrix} \begin{bmatrix} 13/2 \\ 3/2 \end{bmatrix} = \begin{bmatrix} -8 \\ 3 \end{bmatrix} = C_D (\mathbf{v}) .
+	\]
+
+\spc 
+
+\exo{9.2}{7b}{10}
+
+In the basis $B_0$, we have
+	\[
+		C_{B_0} (T (1)) = C_{B_0} (1 + x^2) = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} , \quad 	C_{B_0} (T (x)) = C_{B_0} (1 + x ) = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} , \quad C_{B_0} (T (x^2)) C_{B_0} (x + x^2 ) = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} .
+	\]
+Therefore
+	\[
+		M_{B_0} (T) = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{bmatrix} .
+	\]
+
+In the basis $B$, we have
+	\[
+		C_{B} (T (1 - x^2)) = C_{B} (1 - x ) = \begin{bmatrix} -2 \\ 3 \\ -2 \end{bmatrix} , \quad C_B (T (1 + x)) = C_B (2 + x + x^2) = \begin{bmatrix} -3 \\ 5 \\ -2 \end{bmatrix}
+	\]
+and
+	\[
+		C_B (T (2x + x^2)) = C_B (2 + 3x + x^2 ) = \begin{bmatrix} -1 \\ 3 \\ 0 \end{bmatrix} .
+	\]
+Therefore
+	\[
+		M_B (T) = \begin{bmatrix} -2 & -3 & -1 \\ 3 & 5 & 3 \\ -2 & -2 & 0 \end{bmatrix} .
+	\]
+
+It is straightforward to obtain
+	\[
+		P = P_{B_0 \leftarrow B} = \begin{bmatrix} 1 & 1 & 0\\ 0 & 1 & 2 \\ -1 & 0 & 1 \end{bmatrix} .
+	\]
+Hence, we get
+	\[
+		P^{-1} = \begin{bmatrix} -1 & 1 & -2\\2 & -1 & 2\\-1 & 1 & -1 \end{bmatrix} .
+	\]
+Hence, we get
+	\[
+		P^{-1} M_{B_0} (T) P = \begin{bmatrix} -1 & 1 & -2\\2 & -1 & 2\\-1 & 1 & -1 \end{bmatrix}  \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 1 & 0\\ 0 & 1 & 2 \\ -1 & 0 & 1 \end{bmatrix} = \begin{bmatrix} -2 & -3 & -1\\3 & 5 & 3\\-2 & -2 & 0 \end{bmatrix} = M_B (T) .
+	\]
+
+\spc 
+
+\exo{9.2}{8b}{5}
+
+Using python, we get
+	\[
+		P^{-1} = \begin{bmatrix} 5 & -2\\-7 & 3 \end{bmatrix} 
+	\]
+and so
+	\[
+		P^{-1} A P = \begin{bmatrix} 5 & -2\\-7 & 3 \end{bmatrix} \begin{bmatrix} 29 & -12 \\ 70 & -29 \end{bmatrix} \begin{bmatrix} 3 & 2 \\ 7 & 5 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} = D .
+	\]
+
+Using the columns of $P$, we define
+	\[
+		B = \left\lbrace \begin{bmatrix} 3 \\ 7 \end{bmatrix} , \begin{bmatrix} 2 \\ 5 \end{bmatrix} \right\rbrace .
+	\]
+
+
+
+\end{document}

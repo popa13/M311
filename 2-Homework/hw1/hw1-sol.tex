@@ -1,0 +1,183 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 1}}
+\rhead{Fall 2023}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Appendix {#1}, Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 1 Solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{L}{1}{4}
+	\begin{enumerate}[label=\alph*)]
+	\item Yes it is a statement. The statement is false since $|-12| = 12$ (absolute value turns negative numbers into positive numbers).
+	\item No, this is not a statement. The value of $x$ is not specify, so there is no truth value that can be associated to this sentence.
+	\item No, this is not a statement. A question is not a statement.
+	\item Yes, this is a statement. It is true, because assuming that $a = 2$ and $b = 4$, we have $a + b = 2 + 4 = 6$.
+	\end{enumerate}
+
+	\vspace*{0.5cm}
+
+	\exo{L}{2}{6}
+	\begin{enumerate}[label=\alph*)]
+ 	\item \textbf{Converse:} If Angela sleeps in, then it is a Saturday. \\
+ 	\textbf{Contrapositive:} If Angela does not sleep in, then it is not Saturday.
+ 	\item \textbf{Converse:} If I use my umbrella, then it rains outside. \\
+ 	\textbf{Contrapositive:} If I don't use my umbrella, then it does not rain outside.
+ 	\item \textbf{Converse:} If the surf was bigger than $4$ feet high, then I went surfing.\\ 
+ 	\textbf{Contrapositive:} If the surf was smaller than 4 feet high, then I did not go surfing.
+ 	\end{enumerate}
+
+ 	\vspace*{0.5cm}
+
+ 	\exo{L}{3}{8}
+ 	\begin{enumerate}[label=\alph*)]
+ 	\item The negation is ``It is not the case that it is raining and Charlie is cold.''. The negation of a statement $P \wedge Q$, is $(\neg P) \vee (\neg Q)$. So, letting $P$: ``It is raining'' and $Q$: ``Charlie is cold'', a useful reformulation of the negation is ``it is not raining or Charlie is not cold''.
+ 	\item The negation is ``It is not the case that if is raining, then Charlie is cold''. The negation of a statement $P \Rightarrow Q$ is $P \wedge (\neg Q)$. So, a useful reformulation of the negation is ``It is raining and Charlie is not cold''.
+ 	\item Let's simplify the statement using mathematical symbols. We can equivalently and compactly rewrite the statement as `` $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation is then ``It is not the case that $\forall x$ real, $\exists y$ real such that $x + y = 0$''. The negation of a universal statement ``$\forall x$, $P (x)$'' is ``$\exists x$, $\neg P(x)$''. Let $P (x)$: ``$\exists y$ real such that $x + y = 0$''. Then we can rewrite the negation of the statement as ``$\exists x$ real such that $\neg P (x)$'' or
+ 		\begin{center}
+ 		$\exists x$ real such that it is not the case that there exists $y$ real such that $x + y = 0$.
+ 		\end{center}
+ 	The negation of an existential ``$\exists y$, $Q(y)$'' is ``$\forall y$, $\neg Q(y)$. For a fixed $x$, let $Q (y)$: ``$x + y = 0$''. Then we can rewrite the negation of ``$\exists y$ real such that $x + y = 0$'' as ``$\forall x$ real, $\neg Q (y)$'', or ``$\forall x$ real, $x + y \neq 0$''. Therefore, the negation of the whole statement is
+ 		\begin{center}
+ 		$\exists x$ real such that $\forall y$ real, $x + y \neq 0$ .
+ 		\end{center}
+ 	\item Let $P:$ ``$|a| > 0$'' and $Q:$ ``$a \neq 0$''. The statement $P \iff Q$ can be written as
+ 		\[
+ 			(P \Rightarrow Q ) \wedge (Q \Rightarrow P) .
+ 		\]
+ 	Therefore, the negation of the $P \iff Q$ is
+ 		\[
+ 			(P \wedge \neg Q) \vee (Q \wedge \neg P) .
+ 		\]
+ 	Replacing what is $P$ and $Q$, the statement $P \wedge \neg Q$ becomes `` $|a| > 0$ and $a = 0$ '' and the statement $Q \wedge \neg P$ becomes ``$a \neq 0$ and $|a| \leq 0$''. Hence, the negation of the full statement is
+ 		\[
+ 			( |a| > 0 \text{ and } a = 0 ) \text{ or } (a \neq 0 \text{ and } |a| \leq 0 ) .
+ 		\]
+	\end{enumerate}
+
+	\hspace*{0.5cm}
+
+	\exo{B}{1}{12}
+	\begin{enumerate}
+		\item[a)] \textbf{Proof of the implication.} Assume that $n$ is an even integer. Then $n = 2k$, for some integer $k$. Hence, $n^2 = (2k)^2 = 4k^2$ and $n^2$ is a multiple of $4$.\\ 
+		\textbf{Proof of the converse.} Assume that $n^2$ is a multiple of $4$. Then $n^2 = 4k$, for some integer $k$. Rearranging the equation for $n$ and $k$, we get $(n/2)^2 = k$. If $n$ was an odd integer, then $(n/2)^2$ would be a rational number (a fraction). However, from the equation $(n/2)^2 = k$, $(n/2)^2$ should be a whole number. Therefore, $n$ should be even.
+		\item[d)] \textbf{Proof of the implication.} Assume that $x^2 - 5x + 6 = 0$. Factoring the polynomial, we find that $(x - 2) (x - 3) = 0$. Therefore, $x - 2 = 0$ or $x - 3 = 0$. Hence, $x = 2$ or $x = 3$.\\ 
+		\textbf{Proof of the converse.} There are two cases to verify. Assume $x = 2$. Then $2^2 - 5(2) + 6 = 4 - 10 + 6 = 0$. So $x = 2$ satisfies the conclusion. Now assume that $x = 3$. Then $3^2 - 5(3) + 6 = 9 - 15 + 6 = 0$. So $x = 3$ satisfies the conclusion.
+	\end{enumerate}
+
+	\vspace*{0.5cm} 
+
+	\exo{B}{2b}{5} 
+	\\ 
+	Assume that $n$ is an odd integer. Then $n = 2m + 1$, for some integer $m$. Squaring $n$, we get 
+		$$ 
+			n^2 = (2m + 1)^2 = 4m^2 + 4m + 1 = 4 (m^2 + m) + 1 .
+		$$
+	Since $m$ is an integer, it can be ether odd or even. We can split the proof into two cases:
+		\begin{enumerate}
+			\item \textbf{Assume that $m$ is even.} Then $m = 2j$, for some integer $j$. Replacing it in the expression for $n^2$, we get
+				\[
+					n^2 = 4 (4j^2 + 2j) + 1 = 4 ( 2 (2j^2 + j)) + 1 = 8 (2j^2 + j) + 1 .
+				\]
+			Let $k = 2j^2 + 2$, then $n^2 = 8k + 1$.
+			\item \textbf{Assume that $m$ is odd.} Then $m = 2j + 1$, for some integer $j$. Replacing it in the expression for $n^2$, we get
+				\[
+					n^2 = 4 (4j^2 + 4j + 1 + 2j + 1) + 1 = 4 (4j^2 + 6j + 2) + 1 = 8 (2j^2 + 3j + 1) + 1 .
+				\]
+			Let $k = 2j^2 + 3j + 1$, then $n^2 = 8k + 1$.
+		\end{enumerate}
+	Thus, in both cases, we can write $n^2 = 8k + 1$, for some integer $k$.
+
+	\hspace*{0.5cm}
+
+	\exo{B}{3a}{10}
+	\\ 
+	Assume that $n > 2$ and $n$ is a prime. To give a proof by contradiction, assume further that $n$ is not an odd integer. In other words, assume that $n$ is an even integer. Since $n$ is even, then $n$ is divisible by $2$. But a prime number is only divisible by itself and $1$. Since $n > 2$, $n$ can not be divisible by $2$. This is a contradiction. Hence, $n$ should be an odd integer.
+
+	The converse is false though. For example, take $n = 9$. Then $n$ is an odd integer, but it is divisible by $3$, so it is not a prime.
+
+	\hspace*{0.5cm} 
+
+	\exo{B}{4a}{5}
+	\\ 
+	Assume that $x$ and $y$ are positive numbers. Assume further that the conclusion is not true, so that $\sqrt{x + y}= \sqrt{x} + \sqrt{y}$. Then squaring the last equation:
+		\[
+			x + y = (\sqrt{x} + \sqrt{y})^2 = x + 2\sqrt{x}\sqrt{y} = y
+		\]
+	which, after simplifications, turns out to be 
+		\[
+			0 = xy .
+		\]
+	However, two numbers are zero only when one of them is $0$. But, we assumed that both $x$ and $y$ are not zero. A contradiction. Hence,
+		\[
+			\sqrt{x + y} \neq \sqrt{x} + \sqrt{y} .
+		\]
+
+	
+\end{document}

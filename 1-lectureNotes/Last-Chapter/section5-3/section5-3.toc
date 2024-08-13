@@ -1,0 +1,16 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Definitions}{2}{section*.1}%
+\contentsline {subsubsection}{Dot Product}{2}{subsubsection*.2}%
+\contentsline {subsubsection}{Length}{3}{subsubsection*.3}%
+\contentsline {section}{Important Identities}{4}{section*.4}%
+\contentsline {subsubsection}{Cauchy-Schwarz Inequality}{4}{subsubsection*.5}%
+\contentsline {subsubsection}{Triangle Inequality}{5}{subsubsection*.6}%
+\contentsline {subsubsection}{Distance}{5}{subsubsection*.7}%
+\contentsline {section}{Orthogonality}{6}{section*.8}%
+\contentsline {subsubsection}{Orthogonal Sets}{7}{subsubsection*.9}%
+\contentsline {subsubsection}{Orthonormal Sets}{8}{subsubsection*.10}%
+\contentsline {section}{Important Identities}{9}{section*.11}%
+\contentsline {subsubsection}{Pythagoras' Theorem}{9}{subsubsection*.12}%
+\contentsline {subsubsection}{Linearly Independent}{9}{subsubsection*.13}%
+\contentsline {subsubsection}{Fourier Expansion}{10}{subsubsection*.14}%
+\contentsline {subsubsection}{Criteria to be in the Span}{12}{subsubsection*.15}%

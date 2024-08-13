@@ -1,0 +1,225 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 9}}
+\rhead{Spring 2024}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 10 solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+
+	\exo{6.2}{6}{10} 
+		\begin{enumerate}
+			\item[a.] We want to find $a$, $b$, and $c$ such that
+				\[
+					a (x + 1) + b(x^2 + x) + c (x^2 + 2) = x^2 + 3x + 2
+				\]
+			which can be rewritten as
+				\[
+					(b + c)x^2 + (a + b) x + (a + 2c) = x^2 + 3x + 2 .
+				\]
+			Therefore, $a$, $b$, $c$ are solutions to the system
+				\[
+					\left\{ \systeme{b + c = 1, a + b = 3, a + 2c = 2} \right.
+				\]
+			The solution to this system is $a = 2$, $b = 1$ and $c = 0$. Therefore,
+				\[
+					2(x + 1) + (x^2 + x) = x^2 + 3x + 2 .
+				\]
+			\item[c.] We want to find $a$, $b$, and $c$ such that
+				\[
+					a (x + 1) + b (x^2 + x) + c (x^2 + 2) = x^2 + 1
+				\]
+			which can be rewritten as
+				\[
+					(b + c)x^2 + (a + b) x + (a + 2c) = x^2 + 1 .
+				\]
+			Therefore, $a$, $b$, $c$ are solutions to the system
+				\[
+					\left\{ \systeme{b + c = 1, a + b = 0, a + 2c = 1} \right.
+				\]
+			The solution to this system is $a = -1/3$, $b = 1/3$, and $c = 2/3$. Therefore
+				\[
+					-\tfrac{1}{3} (x + 1) + \tfrac{1}{3} (x^2 + x) + \tfrac{2}{3} (x^2 + 2) = x^2 + 1 .
+				\]
+		\end{enumerate}
+
+	\newpage
+
+	\exo{6.2}{9}{10}
+		\begin{enumerate}
+			\item[a.] Collect the vectors in a matrix
+				\[
+					A = \begin{bmatrix} 1 & 1 & 0\\0 & 1 & 1\\1 & 0 & 1 \end{bmatrix} .
+				\]
+			The goal is to write any vector $(a, b, c)$ from $\mathbb{R}^3$ as a linear combination of the vectors in the collection, that is solving the system
+				\[
+					A \mathbf{x} = \begin{bmatrix} a \\ b \\ c \end{bmatrix} .
+				\]
+			We have $\det (A) = 2 \neq 0$. Therefore the matrix $A$ is invertible and there is always a solution to the above system. Hence, the vectors span $\mathbb{R}^3$.
+			\item[c.] Let $M = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ be a $2 \times 2$ matrix. We want to know if
+				\[
+					M = x_1 \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} + x_2 \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} + x_3 \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} + x_4 \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} .
+				\]
+			Using the operations on matrices, we then get
+				\[
+					\begin{bmatrix} a & b \\ c & d \end{bmatrix} = \begin{bmatrix} x_1 + x_2 + x_4 & x_3 + x_4 \\ x_3 & x_2 + x_4 \end{bmatrix} .
+				\]
+			Therefore, the vector $\mathbf{x}$ is solution to the system
+				\[
+					\begin{bmatrix} 1 & 1 & 0 & 1 \\ 0 & 0 &1 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{bmatrix} = \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} .
+				\]
+			If $A$ is the matrix of coefficients, then $\det (A) = -1 \neq 0$. Therefore, the matrix $A$ is invertible and the above system always has a solution. Hence, the set of matrices span $\mathbf{M_{22}}$.
+		\end{enumerate}
+
+	\spc
+
+	\exo{6.2}{14}{5}
+
+	If it was possible, then a linear combination with the two given vectors will give $(c + d, 2c + d, d)$, for $c, d \in \mathbb{R}$. If $d \neq 0$, then it won't take the form of the vectors in $U$. So it is impossible.
+	
+	\spc
+
+	\exo{5.2}{3}{10}
+		\begin{enumerate}
+			\item[a.] We put the vectors in a matrix
+				\[
+					A = \begin{bmatrix}1 & 2 & 1\\-1 & 3 & 9\\2 & 0 & -6\\0 & 3 & 6\end{bmatrix} .
+				\]
+				We find the RREF of $A$:
+					\[
+						\begin{bmatrix}1 & 0 & -3\\0 & 1 & 2\\0 & 0 & 0\\0 & 0 & 0\end{bmatrix}
+					\]
+				The dimension of $U$ is $2$ because the number of pivots in the RREF is $2$ and a basis for $U$ is the first two columns of $A$.
+			\item[c.] We put the vectors in a matrix
+				\[
+					A =\begin{bmatrix}-1 & 2 & 4 & 3\\2 & 0 & 4 & -2\\1 & 3 & 11 & 2\\0 & -1 & -3 & -1\end{bmatrix} .
+				\]
+			We find the RREF of $A$:
+				\[
+					\begin{bmatrix}1 & 0 & 2 & -1\\0 & 1 & 3 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{bmatrix} .
+				\]
+			The dimension of $U$ is $2$ because the number of pivots in the RREF is $2$ and a basis for $U$ is the first two columns of $A$.
+		\end{enumerate}
+
+	\spc
+
+	\exo{6.3}{1d}{5}
+	
+	Set
+		\[
+			a \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} + b \begin{bmatrix} 0 & 1 \\ 1 & 1 \end{bmatrix} + c \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix} + d \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} .
+		\]
+	We obtain, after using the matrix operations,
+		\[
+			\begin{bmatrix} a + c + d & a + b + d \\ a + b + c & b + c + d \end{bmatrix} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
+		\]
+	We therefore get the following system
+		\[
+			\begin{bmatrix} 1 & 0 & 1 & 1\\1 & 1 & 0 & 1\\1 & 1 & 1 & 0\\0 & 1 & 1 & 1 \end{bmatrix} \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix} .
+		\]
+	If $A$ is the matrix of coefficients, then $\det (A) = 3$ and hence the matrix $A$ is invertible. Therefore, the unique solution to the system is $A^{-1} \mathbf{0} = \mathbf{0}$. Hence $a = b = c = d = 0$ and the matrices are linearly independent.
+
+	\spc
+
+	
+
+	\exo{6.3}{6}{10}
+		\begin{enumerate}
+			\item[c.] Let $p (x) = ax^2 + bx + c$ be an element of $U$. This means $p (1) = 0$, and therefore $a + b + c = 0$. Hence
+				\begin{align*}
+					U = \{ ax^2 + bx + c \, : \, a + b + c = 0 \} &= \{ ax^2 + bx + (- b - a) \, : \, a, b \in \mathbb{R} \} \\ 
+					&= \{ a (x^2 - 1) + b (x - 1) \, : \, a, b, c \in \mathbb{R} \}.
+				\end{align*}
+			Hence we have $U = \mathrm{span} \{ x^2 - 1 , x - 1 \}$ and $\{ x^2 - 1 , x - 1 \}$ is linear independent. Therefore $\{ x^2 - 1 , x - 1 \}$ is a basis for $U$ and $\dim U = 2$.
+			\item[d.] Let $p (x) = ax^2 + bx + c$ be an element of $U$. This means $p (x) = p (-x)$ and therefore
+				\[
+					ax^2 + b x + c = ax^2 - bx + c \iff 2b x = 0 \iff b = 0 .
+				\]
+			Hence
+				\begin{align*}
+				U = \{ ax^2 + c \, : \, a , c \in \mathbb{R} \} = \mathrm{span} \, \{ x^2 , 1 \} .
+				\end{align*}
+			Also $\{ x^2 , 1 \}$ are linear independent and therefore form a basis for $U$. We then get $\dim U = 2$. 
+		\end{enumerate}
+
+
+
+
+
+
+\end{document}

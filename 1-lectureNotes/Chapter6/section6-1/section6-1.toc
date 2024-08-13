@@ -1,0 +1,10 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Definition}{2}{section*.1}%
+\contentsline {subsection}{Column Vectors}{2}{subsection*.2}%
+\contentsline {subsection}{General Definition}{3}{subsection*.3}%
+\contentsline {section}{Examples}{4}{section*.4}%
+\contentsline {subsection}{Spaces of Matrices}{4}{subsection*.5}%
+\contentsline {subsection}{Spaces of Polynomials}{5}{subsection*.6}%
+\contentsline {subsection}{Weird Example}{9}{subsection*.7}%
+\contentsline {subsection}{Non-Example}{13}{subsection*.8}%
+\contentsline {section}{Properties}{14}{section*.9}%

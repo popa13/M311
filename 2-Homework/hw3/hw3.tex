@@ -1,0 +1,204 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multicol}
+
+\usepackage{comment}
+\usepackage{url}
+\usepackage{calc}
+\usepackage{subcaption}
+\usepackage{circledsteps}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{systeme}
+\sysdelim..
+
+\setlength\parindent{0pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{0pt}
+\rfoot{\thepage}
+\lhead{\textsc{Math} 311}
+\chead{\textsc{Homework 1}}
+\rhead{Fall 2023}
+
+\pgfplotsset{compat=1.16}
+
+% MATH commands
+\newcommand{\ga}{\left\langle}
+\newcommand{\da}{\right\rangle}
+\newcommand{\oa}{\left\lbrace}
+\newcommand{\fa}{\right\rbrace}
+\newcommand{\oc}{\left[}
+\newcommand{\fc}{\right]}
+\newcommand{\op}{\left(}
+\newcommand{\fp}{\right)}
+
+\newcommand{\bi}{\mathbf{i}}
+\newcommand{\bj}{\mathbf{j}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bF}{\mathbf{F}}
+
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+\newcommand{\sech}{\mathrm{sech}\,}
+\newcommand{\csch}{\mathrm{csch}\,}
+\newcommand{\curl}{\mathrm{curl}\,}
+\newcommand{\dive}{\mathrm{div}\,}
+
+\newcommand{\ve}{\varepsilon}
+\newcommand{\spc}{\vspace*{0.5cm}}
+
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+
+\newcommand{\exo}[3]{\noindent\textcolor{red}{\fbox{\textbf{Section {#1} | Problem {#2}}}\hrulefill   \textbf{({#3} Pts})}\vspace*{10pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+\thispagestyle{empty}
+	\noindent \hrulefill \newline
+	MATH-311 \hfill Pierre-Olivier Paris{\'e}\newline
+	Homework 2 Solutions \hfill Spring 2024\newline \vspace*{-0.7cm}
+	
+	\noindent\hrulefill
+	
+	\spc
+	
+	\exo{1.3}{3}{10}
+	\begin{enumerate}
+		\item[a.] We want to know if $\mathbf{v} = a \mathbf{x} + b \mathbf{y} + c \mathbf{z}$. Using operations on $n$-vectors, we can rewrite this as the following system of linear equations:
+			\[
+				\left\{\systeme{2a + b + c = 0, a + c = 1, -a + b - 2c = -3} \right. \longrightarrow
+				\begin{bmatrix}[ccc|c]
+				2 & 1 & 1 & 0 \\ 
+				1 & 0 & 1 & 1 \\ 
+				-1 & 1 & -2 & -3 
+				\end{bmatrix} \longrightarrow 
+				\begin{bmatrix}[ccc|c]
+				1 & 0 & 1 & 1\\0 & 1 & -1 & -2\\0 & 0 & 0 & 0
+				\end{bmatrix}
+			\]
+		Hence, by setting $c = t$, we get $a = 1 - t$, $b = -2 + t$, and $c = t$. Letting $t = 0$, we get that $\mathbf{v} = \mathbf{x} - 2 \mathbf{y}$.
+		\item[c.] We want to know if $\mathbf{v} = a \mathbf{x} + b \mathbf{y} + c \mathbf{z}$. Using operations of $n$-vectors, we can rewrite this as the following system of linear equations:
+			\[
+				\left\{ \systeme{2a + b + c = 3, a + c = 1, -a + b - 2c = 0} \right. \longrightarrow 
+				\begin{bmatrix}[ccc|c] 
+				2 & 1 & 1 & 3\\
+				1 & 0 & 1 & 1\\
+				-1 & 1 & -2 & 0
+				\end{bmatrix} \longrightarrow
+				\begin{bmatrix}[ccc|c]1 & 0 & 1 & 1\\0 & 1 & -1 & 1\\0 & 0 & 0 & 0\end{bmatrix}
+			\]
+		Hence, setting $c = t$, we get $a = 1 - t$, $b = 1 + t$ and $c = t$. Letting $t = 0$, we get that $\mathbf{v} = \mathbf{x} + \mathbf{y}$. 
+	\end{enumerate}
+
+	\spc 
+
+	\exo{1.3}{4a}{5} 
+	\\ 
+	We want to know if $\mathbf{y} = x_1 \mathbf{a_1} + x_2 \mathbf{a_2} + x_3 \mathbf{a_3}$. Then, we get the system
+		\[
+			\left\{ \systeme{-x_1 + 3x_2 + x_3 = 1, 3x_1 + x_2 + x_3 = 2, 2x_2 + x_3 = 4, x_1 + x_3 = 0} \right. \longrightarrow \begin{bmatrix}[ccc|c] -1 & 3 & 1 & 1\\3 & 1 & 1 & 2\\0 & 2 & 1 & 4\\1 & 0 & 1 & 0\end{bmatrix} \longrightarrow \begin{bmatrix}[ccc|c]1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{bmatrix}
+		\]
+	We get $0 = 1$ and hence the system is inconsistent. This means $\mathbf{y}$ is not a linear combination of $\mathbf{a_1}$, $\mathbf{a_2}$, and $\mathbf{a_3}$.
+
+\spc 
+
+\exo{1.3}{5a}{5} 
+\\ 
+The augmented matrix and the RREF of the system is
+	\[
+		\begin{bmatrix}[ccccc|c]
+		1 & 2 & -1 & 2 & 1 & 0\\
+		1 & 2 & 2 & 0 & 1 & 0\\
+		2 & 4 & -2 & 3 & 1 & 0
+		\end{bmatrix} \longrightarrow 
+		\begin{bmatrix}[ccccc|c]
+		1 & 2 & 0 & 0 & - \frac{1}{3} & 0\\
+		0 & 0 & 1 & 0 & \frac{2}{3} & 0\\
+		0 & 0 & 0 & 1 & 1 & 0
+		\end{bmatrix}
+	\]
+Hence, setting $x_2 = t$ and $x_5 = s$, then $x_1 = -2t + \frac{s}{3}$, $x_2 = t$, $x_3 = -\frac{2s}{3}$, $x_4 = -s$, and $x_5 = s$. We can rewrite this as
+	\[
+		\mathbf{x} = \begin{bmatrix} -2t + \frac{s}{3} \\ t \\ -\frac{2s}{3} \\ -s \\ s \end{bmatrix} = t \begin{bmatrix} -2 \\ 1 \\ 0 \\ 0 \\ 0 \end{bmatrix} + s \begin{bmatrix} 1/3 \\ 0 \\ -2/3 \\ -1 \\ 1 \end{bmatrix} 
+	\]
+with $t, s \in \mathbb{R}$. 
+
+
+\spc 
+
+\exo{2.1}{3}{10} 
+\begin{enumerate}
+	\item[a.] Notice that $3A$ is a $2 \times 2$ matrix, but $-2B$ is an $2 \times 3$ matrix. The dimensions don't match and therefore $3A - 2B$ is undefined.
+	\item[e.] We have
+		\[
+			4 A^{\top} - 3C = 4 \begin{bmatrix} 2 & 0 \\ 1 & -1 \end{bmatrix} - \begin{bmatrix} 9 & -3 \\ 6 & 0 \end{bmatrix} = \begin{bmatrix} 8 & 0 \\ 4 & -4 \end{bmatrix} + \begin{bmatrix} -9 & 3 \\ -6 & 0 \end{bmatrix} = \begin{bmatrix} -1 & 3 \\ -2 & -4 \end{bmatrix} .
+		\]
+\end{enumerate}
+
+\spc 
+
+\exo{2.1}{13a}{5}
+\\ 
+Assume that $A = [a_{ij}]$, with $a_{ij} = 0$ if $i \neq j$ and $B = [b_{ij}]$, with $b_{ij} = 0$ if $i \neq j$. Then $A + B = C = [c_{ij}]$ with $c_{ij} = a_{ij} + b_{ij}$. So we have to show that $c_{ij} = 0$ if $i \neq j$. Assume that $i \neq j$. Then $a_{ij} = 0$ and $b_{ij} = 0$ form the assumptions and therefore
+	\[
+		c_{ij} = a_{ij} + b_{ij} = 0 + 0 = 0 .
+	\]
+Hence, $c_{ij} = 0$ for $i \neq j$ and $A + B$ is a diagonal matrix.
+
+\spc 
+
+\exo{2.1}{15}{10} 
+\begin{enumerate}
+	\item[a.] Let's do some algebra first:
+		\[
+			A^{\top} + 3 \begin{bmatrix} 1 & -1 & 0 \\ 1 & 2 & 4 \end{bmatrix}^{\top} = A^{\top} + 3 \begin{bmatrix} 1 & 1 \\ -1 & 2 \\ 0 & 4 \end{bmatrix} = A^{\top} + \begin{bmatrix} 3 & 3 \\ -1 & 2 \\ 0 & 4 \end{bmatrix} .
+		\]
+	Plugging this in the original equation, we obtain
+		\[
+			A^{\top} + \begin{bmatrix} 3 & 3 \\ -1 & 2 \\ 0 & 4 \end{bmatrix} = \begin{bmatrix} 2 & 1 \\ 0 & 5 \\ 3 & 8 \end{bmatrix} \iff A^{\top} = \begin{bmatrix} 2 & 1 \\ 0 & 5 \\ 3 & 8 \end{bmatrix}  - \begin{bmatrix} 3 & 3 \\ -1 & 2 \\ 0 & 4 \end{bmatrix} \iff A^{\top} = \begin{bmatrix} -1 & -2 \\ 1 & 3 \\ 3 & 4 \end{bmatrix} .
+		\]
+	Recall that $(A^\top)^\top = A$, so that
+		\[
+			A = \begin{bmatrix} -1 & -2 \\ 1 & 3 \\ 3 & 4 \end{bmatrix}^\top = \begin{bmatrix} -1 & 1 & 3 \\ -2 & 3 & 4 \end{bmatrix} .
+		\]
+		\item[b.] The left hand side can be rearranged, after some algebra, as
+			\[
+				3A +  \begin{bmatrix} 2 & 0 \\ 0 & 4 \end{bmatrix} .
+			\]
+		Hence, plugging that back in the original equation, we get
+			\[
+				3A + \begin{bmatrix} 2 & 0 \\ 0 & 4 \end{bmatrix} = \begin{bmatrix} 8 & 0 \\ 3 & 1 \end{bmatrix} \iff 3A = \begin{bmatrix} 6 & 0 \\ 3 & -3 \end{bmatrix} \iff A = \begin{bmatrix} 2 & 0 \\ 1 & -1 \end{bmatrix} .
+			\]
+\end{enumerate}
+
+\spc 
+
+\exo{2.1}{17}{5} 
+\\ 
+Assume that $A$ is a square matrix, say $n \times n$. Then $A^\top$ is also an $n \times n$ matrix and therefore $A + A^\top$ is well-defined. We then have
+	\[
+		(A + A^\top)^\top = A^\top + (A^\top)^{\top} = A^\top + A = A + A^\top .
+	\]
+Hence, $A + A^\top$ is a symmetric matrix. \hfill $\square$
+
+\end{document}

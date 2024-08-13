@@ -1,0 +1,10 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Goal}{2}{section*.1}%
+\contentsline {section}{A Basic Example}{2}{section*.2}%
+\contentsline {section}{Cofactors of A Matrix}{4}{section*.3}%
+\contentsline {section}{Definition of the Determinant}{5}{section*.4}%
+\contentsline {section}{Determinant and Row Operations}{7}{section*.5}%
+\contentsline {subsubsection}{Interchanging two rows}{7}{subsubsection*.6}%
+\contentsline {subsubsection}{Scaling a row}{8}{subsubsection*.7}%
+\contentsline {subsubsection}{Subtracting a Multiple of a Row}{9}{subsubsection*.8}%
+\contentsline {section}{Diagonal Matrices}{11}{section*.9}%

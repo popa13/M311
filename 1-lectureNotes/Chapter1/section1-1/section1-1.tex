@@ -1,0 +1,409 @@
+\documentclass[20pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{systeme}
+\sysdelim..
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titlesec}
+\usepackage{environ}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multicol}
+\usepackage[indent=0pt]{parskip}
+
+\newcommand{\spaceP}{\vspace*{0.5cm}}
+\newcommand{\Span}{\mathrm{Span}\,}
+\newcommand{\range}{\mathrm{range}\,}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\curl}{\mathrm{curl} \,}
+\newcommand{\hint}[1]{\scalebox{2}{$\displaystyle\int_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiint}[1]{\scalebox{2}{$\displaystyle\iint_{\scalebox{0.35}{$#1$}}$}\,}
+\newcommand{\hiiint}[1]{\scalebox{2}{$\displaystyle\iiint_{\scalebox{0.35}{$#1$}}$}\,}
+\renewcommand{\div}{\mathrm{div}\,}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+%% Redefining sections
+\newcommand{\sectionformat}[1]{%
+    \begin{tikzpicture}[baseline=(title.base)]
+        \node[rectangle, draw] (title) {#1};
+    \end{tikzpicture}
+    
+    \noindent\hrulefill
+}
+
+\newif\ifhNotes 
+
+\hNotesfalse
+
+\ifhNotes
+	\newcommand{\hideNotes}[1]{%
+	\phantom{#1}
+	}
+	\newcommand{\hideNotesU}[1]{%
+	\underline{\hspace{1mm}\phantom{#1}\hspace{1mm}}
+	}
+\else
+	\newcommand{\hideNotes}[1]{#1}
+	\newcommand{\hideNotesU}[1]{\textcolor{blue}{#1}}
+\fi
+
+% default values copied from titlesec documentation page 23
+% parameters of \titleformat command are explained on page 4
+\titleformat%
+    {\section}% <command> is the sectioning command to be redefined, i. e., \part, \chapter, \section, \subsection, \subsubsection, \paragraph or \subparagraph.
+    {\normalfont\large\scshape}% <format>
+    {}% <label> the number
+    {0em}% <sep> length. horizontal separation between label and title body
+    {\centering\sectionformat}% code preceding the title body  (title body is taken as argument)
+
+%% Set counters for sections to none
+\setcounter{secnumdepth}{0}
+
+%% Set the footer/headers
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{2pt}
+\lfoot{P.-O. Paris{\'e}}
+\cfoot{MATH 311}
+\rfoot{Page \thepage}
+
+%% Defining example environment
+\newcounter{example}[section]
+\NewEnviron{example}%
+	{%
+	\noindent\refstepcounter{example}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{red}{Example~\theexample.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{theorem}
+% Theorem environment
+\NewEnviron{theorem}%
+	{%
+	\noindent\refstepcounter{theorem}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Theorem~\thetheorem.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\newcounter{definition}
+\NewEnviron{definition}%
+	{%
+	\noindent\refstepcounter{definition}\fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{black}{Definition~\thedefinition.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\BODY
+			}%
+		}%
+	}
+
+\NewEnviron{solution}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Solution.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+
+\NewEnviron{proof}%
+	{%
+	\noindent \fcolorbox{gray!40}{gray!40}{\textsc{\textcolor{blue}{Proof.}}}%
+	%\fcolorbox{black}{white}%
+		{  %\parbox{0.95\textwidth}%
+			{
+			\textcolor{blue}{%
+			\BODY
+			}
+			}%
+		}%
+	}
+%%% Ignorer les notes
+%\excludecomment{notes}
+
+%%%%
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+\vspace*{2.5cm}
+
+{\Huge \textsc{Math 311}}
+
+\vspace*{2cm}
+
+{\LARGE \textsc{Chapter 1}} 
+
+\vspace*{0.75cm}
+
+\noindent\textsc{Section 1.1: Systems of Linear Equations}
+
+\vspace*{0.75cm}
+
+\tableofcontents
+
+\vfill
+
+\noindent \textsc{Created by: Pierre-Olivier Paris{\'e}} \\
+\textsc{Spring 2024}
+\end{center}
+
+\newpage
+
+\section{Terminology}
+
+\begin{definition}
+
+\begin{itemize}
+	\item An equation of the form $a_1 x_1 + a_2 x_2 + \ldots + a_n x_n$ is called a \textbf{linear equation} in the $n$ variables $x_1$, $x_2$, $\ldots$, $x_n$.
+	\item $a_1$, $\ldots$, $a_n$ are fixed real numbers called the \textbf{coefficients}.
+	\item $b$ is a fixed real number called the \textbf{constant term}.
+	\item A \textit{finite} collection of linear equations is called a \textbf{system of linear equations}.
+\end{itemize}
+
+\end{definition}
+
+\begin{definition}
+
+\begin{itemize}
+	\item Given a linear equation $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b$, a list $s_1$, $s_2$, $\ldots$, $s_n$ of $n$ numbers is called a \textbf{solution} to the equation if
+		\[
+			a_1 s_1 + a_2 s_2 + \ldots + a_n s_n = b .
+		\]
+	\item A list $s_1$, $s_2$, $\ldots$, $s_n$ of $n$ numbers is a \textbf{solution to a system} of linear equations if it is a solution of every linear equation of the system.
+	\item Two systems of linear equations are \textbf{equivalent} if they have the same set of solutions.
+\end{itemize}
+
+\end{definition}
+
+\newpage 
+
+\begin{example}
+Consider the following system:
+	\[
+		\systeme{x_1 - 2x_2 + 3x_3 + x_4 = -3, 2x_1 - x_2 + 3x_3 - x_4 = 0} .
+	\]
+(a) Show that $x_1 = 1$, $x_2 = 2$, $x_3=0$, and $x_4 = 0$ is a solution. 
+
+(b) Show that, for arbitrary values of $s$ and $t$, $x_1 = t - s + 1$, $x_2 = t + s + 2$, $x_3 = s$, and $x_4 = t$ is a solution.	
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\begin{definition}
+
+\begin{itemize}
+	\item The quantities $s$ and $t$ are called \textbf{parameters}.
+	\item The set of solutions, described with parameters, is said to be given in \textbf{parametric form} and is called the \textbf{general solution}.
+\end{itemize}
+
+\end{definition}
+
+\newpage 
+
+
+\subsection*{Geometric interpretations}
+
+An equation in $2$ variables (namely $x_1 = x$ and $x_2 = y$) can be drawn in a cartesian plane.
+
+Check out Desmos: \\ 
+\url{https://www.desmos.com/calculator/dbnumvofgs}.
+
+Three alternatives:
+	\begin{itemize}
+		\item The system has a unique solution (the lines intersect at a single point).
+		\item The system has no solution.
+			%\begin{itemize}
+			%	\item Lines are parallel and distinct or;
+			%	\item Lines do not cross in a single point.
+			%\end{itemize}
+		\item The system has infinitely many solutions (the lines are identical). 
+	\end{itemize}
+
+In general:
+	\begin{itemize}
+		\item If the system has at least one solution, the system is called \textbf{consistent}.
+		\item If the system has no solution, the system is called \textbf{inconsistent}.
+	\end{itemize}
+
+\subsection*{General Presentation}
+A system of $m$ linear equations in $n$ variables:
+\begin{align*}
+	a_{11} x_1 + a_{12} x_2 + \ldots + a_{1n} x_n &= b_1 \\ 
+	a_{21} x_1 + a_{22} x_2 + \ldots + a_{2n} x_n &= b_2 \\ 
+	\qquad \qquad \vdots \qquad \qquad & \\ 
+	a_{m1} x_1 + a_{m2} x_2 + \ldots + a_{mn} x_n &= b_m
+\end{align*}
+
+\newpage
+
+\section{Elementary Operations}
+
+\underline{Goal:} Manipulate the equations in the system to reduce it to another simpler system with the same set of solutions.
+
+\begin{example}\label{Example:FirstSystem}
+Solve the system $2x + y = 7$, $x + 2y = -2$.
+%\begin{enumerate}
+	%\item Write the system as its \textbf{augmented matrix}:
+	%\begin{small}
+	%	\[
+	%		\begin{matrix} 2x + y &=& 7 \\ x + 2y &=& -2 \end{matrix} \quad \longleftrightarrow \quad \begin{bmatrix}[cc|r] 2 & \,\, 1 & \, \phantom{-} 7 \\ 1 & \,\, 2 & \, -2  \end{bmatrix}
+	%	\]
+	%\end{small}
+	%\item Manipulate the rows of the augmented matrix:
+	%\begin{small}
+	%\begin{align*}
+	%\systeme{2x + y = 7, x + 2y = -2} & \longleftarrow 
+	%\end{align*}
+	%\end{small}
+	%\begin{small}
+%\begin{align*}
+%\begin{bmatrix}[cc|r] 2 & \,\, 1 & \, 7 \\ 1 & \,\, 2 & \, -2 \end{bmatrix}
+% \quad & \longrightarrow \quad \begin{bmatrix}[cc|r] 1 & \,\, 2 & \, -2 \\ 2 & \,\, 1 & \, \phantom{-} 7 \end{bmatrix} \qquad \begin{matrix}  \scriptstyle R_1 \longleftrightarrow R_2 \\ \phantom{2} \end{matrix} \\ 
+%\quad & \longrightarrow \quad \begin{bmatrix}[cc|r] 1 & \,\, 2 & \, -2 \\ 0 & \,\, 3 & \, -11 \end{bmatrix} \qquad \begin{matrix} \phantom{2} \\ \scriptstyle 2R_1 - R_2 \to R_2 \end{matrix} \\ 
+%\quad & \longrightarrow \quad \begin{bmatrix}[cc|r] 1 & \,\, 2 & \, -2 \\ 0 & \,\, 1 & \, -\frac{11}{3} \end{bmatrix} \qquad \begin{matrix} \phantom{2} \\ \scriptstyle (1/3) R_2 \to R_2 \end{matrix} \\ 
+%\quad & \longrightarrow \quad \begin{bmatrix}[cc|r] 1 & \,\, 0 & \, \frac{16}{3} \\ 0 & \,\, 1 & \,\, - \frac{11}{3} \end{bmatrix} \qquad \begin{matrix} \scriptstyle 2R_2 - R_1 \to R_1 \\ \phantom{2} \end{matrix}
+%\end{align*}
+%\end{small}
+%Reading off the augmented matrix:
+%	\[
+%		\begin{matrix} x &=& 16/3 \\ y &=& -11/3 \end{matrix}
+%	\]
+%\end{enumerate}
+%The starting system is equivalent to the original because the operations didn't change the set of solutions.
+\end{example}
+
+
+\newpage 
+
+\subsubsection*{Three Types of Elementary Operations}
+
+\begin{enumerate}[label=\textbf{\Roman*.}]
+\item Interchange two equations.
+\item Multiply one equation by a nonzero number.
+\item Add a multiple of one equation to a different equation.
+\end{enumerate}
+
+\begin{theorem}
+Suppose that a sequence of elementary operations is performed on a system of linear equations. Then the resulting system has the same set of solutions as the original, so the two systems are equivalent.
+\end{theorem}
+
+\subsubsection*{A Little Shortcut}
+
+\begin{definition}
+The \textbf{augmented matrix} of a system is an array of numbers where each row is obtained from each equation by removing the variable.
+\end{definition}
+
+\begin{example}
+Find the augmented matrix associated to the system in Example \ref{Example:FirstSystem}.
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\vfill 
+
+\underline{Elementary operations translate to:}
+\begin{enumerate}[label=\textbf{\Roman*.}]
+\item Interchange two rows.
+\item Multiply one row by a nonzero number.
+\item Add a multiple of one row to a different row.
+\end{enumerate}
+
+\begin{comment}\begin{proof}
+Assume $x_1 = s_1$, $\ldots$, $x_n = s_n$ is a solution to the system and a type III operation was performed to transform $E_1 = b_1$ into $E_1 + k E_2 = b_1 + k b_2$. Since $s_1, s_2$, $\ldots$, $s_n$ solve the equations $E_1 = b_1$ and $E_2 = b_2$, it must also solve $E_1 + k E_2 = b_1 + kb_2$.
+
+Assume now that $x_1 = s_1$, $\ldots$, $x_n = s_n$ is a solution to the system with $E_1 = b_1$ replaced by $E_1 + k E_2 = b_1 + k b_2$. Then, replacing $E_1 + kE_2 = b_1 + kb_2$ by $(E_1 + kE_2) - k E_2 = (b_1 + kb_2) - k b_2$, we get $E_1 = b_1$. From the previous paragraph, $s_1, s_2$, $\ldots$, $s_n$ is a solution to $E_1 = b_1$. \hfill $\square$
+\end{proof}
+\end{comment}
+
+\newpage
+
+\begin{example}
+Find all solutions to the following system of equations using elementary operations on the augmented matrix.
+	\[
+		\systeme{3x + 4y + z = \phantom{-}1, 2x + 3y = \phantom{-} 0, 4x + 3y - z = -2}
+	\]
+\end{example}
+
+\begin{solution}
+
+\end{solution}
+
+\newpage 
+
+\phantom{2}
+
+\vfill 
+
+
+\textbf{Note:} Any row operation can be reversed.
+	\begin{enumerate}[label=\textbf{\Roman*.}]
+		\item Interchanging two rows is reversed by interchanging them again.
+		\item Multiplying a row by $k \neq 0$ is reversed by multiplying by $1/k$.
+		\item Adding $k$ times row $p$ to a different row $q$ is reversed by adding $-k$ times row $p$ to the new row $q$. 
+	\end{enumerate}
+
+
+
+\end{document}
+
+
+
+\begin{align*}
+	\systeme{2x + y = 7, x + 2y = -2} &\longrightarrow \systeme{x + 2y = -2, 2x + y = 7}  \quad \begin{matrix} \scriptstyle R_1 \leftrightarrow R_2 \\ \phantom{2} \end{matrix}\\ 
+	 &\longrightarrow \systeme{x + 2y = -2 , 3y = -11}  \quad \begin{matrix} \phantom{2} \\ \scriptstyle 2R_1 - R_2 \to R_2 \end{matrix} \\ 
+	& \longrightarrow \systeme{x + 2y = 2, y = -\frac{11}{3}} \quad \begin{matrix} \phantom{2} \\ \scriptstyle (1/3)R_2 \to R_2 \end{matrix} \\ 
+	& \longrightarrow \systeme{x = \frac{16}{3} , y = - \frac{11}{3}} \quad \begin{matrix} \scriptstyle 2R_2 - R_1 \to R_1 \\ \phantom{2} \end{matrix} 
+\end{align*}
+
+\begin{matrix}
+2x + y & = & 7 \\ 
+x + 2y & = & -2
+\end{matrix} \quad & \longrightarrow \quad \begin{matrix} x + 2y &=& -2 \\ 2x + y &=& 7 \end{matrix} \qquad \begin{matrix}  \scriptstyle R_1 \longleftrightarrow R_2 \\ \phantom{2} \end{matrix} \\ 
+\quad & \longrightarrow \quad \begin{matrix} x + 2y & = & -2 \\ \phantom{x +} 3y & = & -11 \end{matrix} \qquad \begin{matrix} \phantom{2} \\ \scriptstyle 2R_1 - R_2 \to R_2 \end{matrix} \\ 
+\quad & \longrightarrow \quad \begin{matrix} x + 2y & = & -2 \\ \phantom{x +} y & = & - \frac{11}{3} \end{matrix} \qquad \begin{matrix} \phantom{2} \\ \scriptstyle (1/3) R_2 \to R_2 \end{matrix} \\ 
+\quad & \longrightarrow \quad \begin{matrix} x & = & \frac{16}{3} \\ y & = & - \frac{11}{3} \end{matrix} \qquad \begin{matrix} \scriptstyle 2R_2 - R_1 \to R_1 \\ \phantom{2} \end{matrix} \tag*{$\triangle$}
