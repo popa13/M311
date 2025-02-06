@@ -42,7 +42,8 @@ I used Python regularly outside and during lectures. You can see in the table in
 I hope this will help you plan you class. 
 
 # Final remarks
-The content in the lecture notes was taken from the textbook Linear Algebra and Differential Equations, by Gary L. Peterson and James S. Sochacki.
+The content in the lecture notes was taken from the textbook ![Linear Algebra
+with Applications](OTB_181_02_Linear_Algebra_with_Applications_2021_A_ffde2362d5-1.pdf), by W. Keith Nicholson.
 
 If you want to download all the files from this repository as a .zip on your computer, follow the steps illustrated in the picutre below.
 
